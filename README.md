@@ -1,9 +1,10 @@
 # Algorithm Implementations
-My implementations of classic algorithms in Python, C, C++ and Java. 
+My implementations of classic algorithms and data structures in Python, C, C++ and Java. 
 
 ## Features
-* Test included
-* Standard implementations
+* Tests included
+* Clean code
+* In 4 major programming languages
 
 ## Algorithms
 | Category | Algorithms |
@@ -12,3 +13,7 @@ My implementations of classic algorithms in Python, C, C++ and Java.
 | selection| quick select, bfprt select |
 | string   | naive string matcher, kmp string matcher |
 | tree traversal | recursive, stack, morris |
+
+## Data Structures
+* Trie
+* Binary Indexed Tree
