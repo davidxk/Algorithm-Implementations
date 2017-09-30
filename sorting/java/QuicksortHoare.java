@@ -40,14 +40,11 @@ public class QuicksortHoare implements SortAlgorithm
 			while(pivot < array[j]) j--;
 			if(i >= j)
 			{
-				int tmp = array[i];
-				array[i] = array[right];
-				array[right] = tmp;
+				array[i] = array[right] ^ array[i] ^ (array[right] = array[i]);
 				return i;
 			}
-			int tmp = array[i];
-			array[i++] = array[j];
-			array[j--] = tmp;
+			array[i] = array[j] ^ array[i] ^ (array[j] = array[i]);
+			i++; j--;
 		}
 	}
 	private int median3(int[] array, int left, int right)
