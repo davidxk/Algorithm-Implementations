@@ -9,6 +9,7 @@ My implementations of classic algorithms and data structures in Python, C, C++11
 ## Data Structures
 * Trie
 * Binary Indexed Tree
+* Disjoint Set
 
 ## Algorithms
 | Category | Algorithms |
