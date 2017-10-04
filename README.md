@@ -15,8 +15,9 @@ My implementations of classic algorithms and data structures in Python, C, C++11
 | Category | Algorithms |
 |----------|------------|
 | search   | binary search |
-| selection| quick select, bfprt select |
+| selection| quick select, BFPRT select |
 | sorting  | bubble sort, selection sort, merge sort, heap sort, quick sort |
-| string   | naive string matcher, kmp string matcher |
-| tree traversal | recursive, stack, morris |
+| shuffle  | Fisher–Yates |
+| string   | naive string matcher, KMP string matcher |
+| tree traversal | recursive, stack, Morris |
 | dutch national flag | three way partition |
