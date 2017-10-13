@@ -19,6 +19,7 @@ void trie_init(Trie* trie)
 	trie->insert = trie_insert;
 	trie->search = trie_search;
 	trie->startWith = trie_start_with;
+	trie->destroy = trie_destroy;
 }
 
 void trie_insert(Trie* trie, const char* word)

@@ -18,6 +18,7 @@ void set_up()
 
 void break_down()
 {
+	bit->destroy(bit);
 	free(bit);
 }
 

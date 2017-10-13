@@ -71,5 +71,5 @@ class DisjointSetLinkBySize:
         return len(self.size)
 
     def max_size(self):
-        return max(self.size.values())
+        return max(self.size.values()) if self.size else 0
     '''
