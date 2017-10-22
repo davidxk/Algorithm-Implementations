@@ -22,3 +22,4 @@ My implementations of classic algorithms and data structures in Python, C, C++11
 | string   | naive string matcher, KMP string matcher |
 | tree traversal | recursive, stack, Morris |
 | dutch national flag | three way partition |
+| linked list | find middle, reverse linked list, merge sort |
