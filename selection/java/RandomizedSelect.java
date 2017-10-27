@@ -6,9 +6,7 @@ public class RandomizedSelect implements SelectionAlgorithm
 	private int random_pivot(int[] array, int left, int right)
 	{
 		int index = rand.nextInt(right - left + 1) + left;
-		int tmp = array[index];
-		array[index] = array[right];
-		array[right] = tmp;
+		array[index] = array[right] ^ array[index] ^(array[right]=array[index]);
 		return array[right];
 	}
 	private int partition(int[] array, int left, int right)
@@ -21,15 +19,10 @@ public class RandomizedSelect implements SelectionAlgorithm
 			while(left <= j  && pivot < array[j]) j--;
 			if(i >= j)
 			{
-				int tmp = array[i];
-				array[i] = array[right];
-				array[right] = tmp;
+				array[i] = array[right] ^ array[i] ^ (array[right] = array[i]);
 				return i;
 			}
-			//int tmp = array[i];
-			//array[i] = array[j];
-			//array[j] = tmp;
-			array[i] = array[i] ^ array[j] ^ (array[j] = array[i]);
+			array[i] = array[j] ^ array[i] ^ (array[j] = array[i]);
 			i++; j--;
 		}
 	}

@@ -1,8 +1,7 @@
 #include <string>
 #include <vector>
-using namespace std;
 
-void compute_prefix_function(const string& pattern, vector<int>& pi)
+void compute_prefix_function(const std::string& pattern, std::vector<int>& pi)
 {
 	int matched = 0;
 	for(int i = 1; i < pattern.size(); i++)
@@ -16,9 +15,9 @@ void compute_prefix_function(const string& pattern, vector<int>& pi)
 	}
 }
 
-int kmp_matcher(const string& text, const string& pattern)
+int kmp_matcher(const std::string& text, const std::string& pattern)
 {
-	vector<int> pi(pattern.size(), 0);
+	std::vector<int> pi(pattern.size(), 0);
 	compute_prefix_function(pattern, pi);
 	int matched = 0;
 	for(int i = 0; i < text.size(); i++)

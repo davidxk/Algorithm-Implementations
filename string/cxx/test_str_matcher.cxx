@@ -1,9 +1,8 @@
 #include <iostream>
 #include <cstdlib>
-#include "kmp_matcher.cxx"
-using namespace std;
+#include "kmp_matcher.h"
 
-void gen_str(string& str)
+void gen_str(std::string& str)
 {
 	for(int i = 0; i < str.size(); i++)
 		switch(rand() % 4)
@@ -15,9 +14,9 @@ void gen_str(string& str)
 		}
 }
 
-bool test_str_matcher(int (*matcher)(const string&, const string&))
+bool test_str_matcher(int (*matcher)(const std::string&, const std::string&))
 {
-	string text(2000, 'A'), pattern(5, 'T');
+	std::string text(2000, 'A'), pattern(5, 'T');
 	for(int i = 0; i < 1000; i++)
 	{
 		gen_str(text);
@@ -32,6 +31,6 @@ bool test_str_matcher(int (*matcher)(const string&, const string&))
 int main()
 {
 	if(!test_str_matcher(kmp_matcher))
-		cout<<"WA: kmp_matcher"<<endl;
+		std::cout<<"WA: kmp_matcher"<<std::endl;
 	return 0;
 }

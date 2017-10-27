@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "kmp_matcher.c"
+#include <string.h>
+#include "kmp_matcher.h"
 
 void gen_str(char* str, int size)
 {
