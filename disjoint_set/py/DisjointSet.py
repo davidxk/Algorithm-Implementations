@@ -32,6 +32,13 @@ class DisjointSet:
     def elements(self):
         return self.parent.keys()
 
+    from collections import defaultdict
+    def partition(self):
+        mapping = defaultdict(list)
+        for child in parent:
+            mapping[parent[child]].append(child)
+        return mapping.values()
+
     def count(self):
         return len(self.height)
     '''
@@ -69,6 +76,13 @@ class DisjointSetLinkBySize:
 
     def count(self):
         return len(self.size)
+
+    from collections import defaultdict
+    def partition(self):
+        mapping = defaultdict(list)
+        for child in parent:
+            mapping[parent[child]].append(child)
+        return mapping.values()
 
     def max_size(self):
         return max(self.size.values()) if self.size else 0
