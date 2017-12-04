@@ -45,9 +45,10 @@ class DisjointSet[T](elems: Iterable[T]) {
   def partition(): immutable.Iterable[Seq[T]] = {
     val mapping = mutable.HashMap[T, mutable.ArrayBuffer[T]]().empty
     for((elem, daddy) <- parent) {
-      if(!mapping.contains(daddy))
-        mapping(daddy) = new mutable.ArrayBuffer[T]()
-      mapping(daddy) += elem
+      val repr = findSet(elem)
+      if(!mapping.contains(repr))
+        mapping(repr) = new mutable.ArrayBuffer[T]()
+      mapping(repr) += elem
     }
     val parts = immutable.Iterable[Seq[T]]() ++ mapping
       .values

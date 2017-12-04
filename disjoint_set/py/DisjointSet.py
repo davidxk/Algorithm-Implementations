@@ -80,8 +80,8 @@ class DisjointSetLinkBySize:
     from collections import defaultdict
     def partition(self):
         mapping = defaultdict(list)
-        for child in parent:
-            mapping[parent[child]].append(child)
+        for child in self.parent:
+            mapping[self.find_set(child)].append(child)
         return mapping.values()
 
     def max_size(self):
