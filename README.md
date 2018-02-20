@@ -7,10 +7,12 @@ My implementations of classic algorithms and data structures in Python, C, C++11
 * In 4 major programming languages
 
 ## Data Structures
+* Vector
+* Heap
+* Disjoint Set (Union-Find)
 * Trie
 * Segment Tree
 * Binary Indexed Tree
-* Disjoint Set
 
 ## Algorithms
 | Category            | Algorithms                                        |

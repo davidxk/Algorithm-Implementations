@@ -1,5 +1,5 @@
 #include "TreeNode.h"
-#include "myvector.h"
+#include "../../vector/myvector.h"
 #include <stdlib.h>
 
 int* preorderTraversal(struct TreeNode* root, int* returnSize)
