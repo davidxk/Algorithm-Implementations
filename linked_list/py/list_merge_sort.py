@@ -10,15 +10,15 @@ def findMiddle(head):
 def list_merge_sort(head):
     return list_m_sort(head) if head else None
 
-def list_merge_sort(head):
+def list_m_sort(head):
     if head.next is None:
         return head
 
     slow = findMiddle(head)
     midd, slow.next = slow.next, None
 
-    head = list_merge_sort( head )
-    midd = list_merge_sort( midd )
+    head = list_m_sort( head )
+    midd = list_m_sort( midd )
     head = list_merge(head, midd)
     return head
 

@@ -13,13 +13,15 @@ My implementations of classic algorithms and data structures in Python, C, C++11
 * Disjoint Set
 
 ## Algorithms
-| Category | Algorithms |
-|----------|------------|
-| search   | binary search |
-| selection| quick select, BFPRT select |
-| sorting  | bubble sort, selection sort, merge sort, heap sort, quick sort |
-| shuffle  | Fisher–Yates |
-| string   | naive string matcher, KMP string matcher |
-| tree traversal | recursive, stack, Morris |
-| dutch national flag | three way partition |
-| linked list | find middle, reverse linked list, merge sort |
+| Category            | Algorithms                                        |
+| ----------          | ------------                                      |
+| search              | binary search                                     |
+| sorting   | bubble sort, selection sort, merge sort, heap sort, quick sort |
+| selection           | quick select, BFPRT select                        |
+| linked list         | find middle, reverse linked list, merge sort      |
+| tree traversal      | recursive, stack, Morris                          |
+| shortest path       | bfs, Dijkstra, Bellman-Ford, Floyd-Warshall       |
+| graph search        | bidirectional, depth limited, iterative deepening |
+| string              | naive string matcher, KMP string matcher          |
+| shuffle             | Fisher–Yates                                      |
+| dutch national flag | three way partition                               |

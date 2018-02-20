@@ -15,7 +15,7 @@ int pick_and_take(vector<int>& pool)
 	int rand_pick = rand() % pool.size();
 	int result = pool[rand_pick];
 	swap(pool[rand_pick], pool.back());
-	pool.resize(pool.size() - 1);
+	pool.pop_back();
 	return result;
 }
 
