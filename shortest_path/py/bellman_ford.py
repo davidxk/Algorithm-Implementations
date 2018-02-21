@@ -16,6 +16,6 @@ def bellman_ford(nodes, edges, source):
 
     for u, v, w in edges:
         if dist[u] + w < dist[v]:
-            return "Negative", "Cycle"
+            return None, "Negative Cycle"
 
     return dist, prev

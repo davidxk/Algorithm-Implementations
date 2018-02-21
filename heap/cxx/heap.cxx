@@ -25,7 +25,7 @@ static void perc_down(std::vector<T>& array, int i, int size)
 template<class T>
 void heapify(std::vector<T>& array)
 {
-	for(int i = array.size() - 1; i >= 0; i--)
+	for(int i = array.size() / 2; i >= 0; i--)
 		perc_down(array, i, array.size());
 }
 
@@ -52,7 +52,7 @@ template<class T>
 T heappop(std::vector<T> array)
 {
 	T retval = array[0];
-	array[0] = array[array.size() - 1];
+	array[0] = array.back();
 	array.pop_back();
 	perc_down(array, 0, array.size());
 	return retval;

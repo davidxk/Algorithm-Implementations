@@ -1,3 +1,9 @@
+# Heap is a binary tree where from root to every leaf is a sorted linked list
+# - Percolate down is like a iteration in insertion sort
+# - Heapify runs percolate down for all layers above the leaf, bottom up
+# - Heappush inserts at bottom right and percolates up like bubble sort
+# - Heappop pops off the root, replaces it with bottom right and percolates down
+
 def perc_down(array, i, size):
     x = array[i]
     child = None
