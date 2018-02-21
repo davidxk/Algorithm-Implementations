@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class RandomizedSelect implements SelectionAlgorithm
+public class QuickSelect implements SelectionAlgorithm
 {
 	private Random rand = new Random();
 	private int random_pivot(int[] array, int left, int right)
@@ -26,7 +26,7 @@ public class RandomizedSelect implements SelectionAlgorithm
 			i++; j--;
 		}
 	}
-	private int r_select(int[] array, int left, int right, int rank)
+	private int q_select(int[] array, int left, int right, int rank)
 	{
 		if(left == right)
 			return array[left];
@@ -35,12 +35,12 @@ public class RandomizedSelect implements SelectionAlgorithm
 		if(rank == pivot_rank)
 			return array[center];
 		else if(rank < pivot_rank)
-			return r_select(array, left, center - 1, rank);
+			return q_select(array, left, center - 1, rank);
 		else
-			return r_select(array, center + 1, right, rank - pivot_rank);
+			return q_select(array, center + 1, right, rank - pivot_rank);
 	}
 	public int select(int[] array, int rank)
 	{
-		return r_select(array, 0, array.length - 1, rank);
+		return q_select(array, 0, array.length - 1, rank);
 	}
 }

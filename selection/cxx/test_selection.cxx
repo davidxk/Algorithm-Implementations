@@ -4,7 +4,7 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-#include "randomized_select.cxx"
+#include "quick_select.cxx"
 #include "bfprt_select.cxx"
 
 void merge(vector<int>& array, int start, int center, int end)
@@ -68,7 +68,7 @@ int main()
 	srand(time(NULL));
 	typedef int (*select)(vector<int>&, int);
 	select funcs[] = {
-		randomized_select, bfprt_select
+		quick_select, bfprt_select
 	};
 	for(select func: funcs)
 		if(!test_select(func))

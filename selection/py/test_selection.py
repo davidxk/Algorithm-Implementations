@@ -13,11 +13,11 @@ def test_select(select):
             return False
     return True
 
-from randomized_select import randomized_select
+from quick_select import quick_select
 from bfprt_select import bfprt_select
 if __name__ == '__main__':
     print "This could take up to 10 seconds ..."
-    for select in [randomized_select, bfprt_select]:
+    for select in [quick_select, bfprt_select]:
         if not test_select(select):
             print "WA:", select
         else:

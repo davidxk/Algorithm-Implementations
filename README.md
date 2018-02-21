@@ -22,8 +22,9 @@ My implementations of classic algorithms and data structures in Python, C, C++11
 | selection           | quick select, BFPRT select                        |
 | linked list         | find middle, reverse linked list, merge sort      |
 | tree traversal      | recursive, stack, Morris                          |
-| shortest path       | bfs, Dijkstra, Bellman-Ford, Floyd-Warshall       |
+| shortest path       | bfs, Dijkstra, Bellman–Ford, Floyd–Warshall       |
 | graph search        | bidirectional, depth limited, iterative deepening |
 | string              | naive string matcher, KMP string matcher          |
+| math                | gcd                                               |
 | shuffle             | Fisher–Yates                                      |
 | dutch national flag | three way partition                               |

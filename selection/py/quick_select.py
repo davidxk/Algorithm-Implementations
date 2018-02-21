@@ -19,7 +19,7 @@ def partition(array, left, right):
         array[i], array[j] = array[j], array[i]
         i, j = i + 1, j - 1
 
-def r_select(array, left, right, rank):
+def q_select(array, left, right, rank):
     if left == right:
         return array[right]
     center = partition(array, left, right)
@@ -27,9 +27,9 @@ def r_select(array, left, right, rank):
     if rank == pivot_rank:
         return array[center]
     elif rank < pivot_rank:
-        return r_select(array, left, center - 1, rank)
+        return q_select(array, left, center - 1, rank)
     else:
-        return r_select(array, center + 1, right, rank - pivot_rank)
+        return q_select(array, center + 1, right, rank - pivot_rank)
 
-def randomized_select(array, rank):
-    return r_select(array, 0, len(array) - 1, rank)
+def quick_select(array, rank):
+    return q_select(array, 0, len(array) - 1, rank)

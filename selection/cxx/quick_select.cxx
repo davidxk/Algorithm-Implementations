@@ -5,15 +5,15 @@ using namespace std;
 
 int random_pivot(vector<int>& array, int left, int right);
 int partition(vector<int>& array, int left, int right);
-int r_select(vector<int>& array, int left, int right, int rank);
-int randomized_select(vector<int>& array, int rank);
+int q_select(vector<int>& array, int left, int right, int rank);
+int quick_select(vector<int>& array, int rank);
 
-int randomized_select(vector<int>& array, int rank)
+int quick_select(vector<int>& array, int rank)
 {
-	return r_select(array, 0, array.size() - 1, rank);
+	return q_select(array, 0, array.size() - 1, rank);
 }
 
-int r_select(vector<int>& array, int left, int right, int rank)
+int q_select(vector<int>& array, int left, int right, int rank)
 {
 	if(left == right)
 		return array[left];
@@ -22,9 +22,9 @@ int r_select(vector<int>& array, int left, int right, int rank)
 	if(rank == pivot_rank)
 		return array[center];
 	else if(rank < pivot_rank)
-		return r_select(array, left, center - 1, rank);
+		return q_select(array, left, center - 1, rank);
 	else
-		return r_select(array, center + 1, right, rank - pivot_rank);
+		return q_select(array, center + 1, right, rank - pivot_rank);
 }
 
 int random_pivot(vector<int>& array, int left, int right)

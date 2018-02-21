@@ -1,13 +1,13 @@
 int partition(int* array, int left, int right);
-int r_select(int* array, int left, int right, int rank);
-int randomized_select(int* array, const int n, int rank);
+int q_select(int* array, int left, int right, int rank);
+int quick_select(int* array, const int n, int rank);
 
-int randomized_select(int* array, int n, int rank)
+int quick_select(int* array, int n, int rank)
 {
-	return r_select(array, 0, n - 1, rank);
+	return q_select(array, 0, n - 1, rank);
 }
 
-int r_select(int* array, int left, int right, int rank)
+int q_select(int* array, int left, int right, int rank)
 {
 	if(left == right)
 		return array[right];
@@ -16,9 +16,9 @@ int r_select(int* array, int left, int right, int rank)
 	if(rank == pivot_rank)
 		return array[center];
 	else if(rank < pivot_rank)
-		return r_select(array, left, center - 1, rank);
+		return q_select(array, left, center - 1, rank);
 	else
-		return r_select(array, center + 1, right, rank - pivot_rank);
+		return q_select(array, center + 1, right, rank - pivot_rank);
 }
 
 void swap(int* a, int* b)

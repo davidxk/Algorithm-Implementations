@@ -66,7 +66,7 @@ public class TestSelection
 	public static void main(String[] argv)
 	{
 		ArrayList<SelectionAlgorithm> funcs = new ArrayList<SelectionAlgorithm>();
-		funcs.add(new RandomizedSelect());
+		funcs.add(new QuickSelect());
 		funcs.add(new BFPRTSelect());
 		for(SelectionAlgorithm func: funcs)
 			if(!testStaticCases(func))

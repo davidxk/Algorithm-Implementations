@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "randomized_select.c"
+#include "quick_select.c"
 
 void perc_down(int* array, int i, int size)
 {
@@ -47,7 +47,7 @@ int test_rand_select()
 		for(j = 0; j < n; j++)
 			array[j] = rand() % (n * 2);
 		rank = rand() % n + 1;
-		retval = randomized_select(array, n, rank);
+		retval = quick_select(array, n, rank);
 		if(!check_rand_select(array, n, rank, retval))
 			return 0;
 	}
