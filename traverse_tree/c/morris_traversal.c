@@ -2,38 +2,38 @@
 #include "../../vector/myvector.h"
 #include <stdlib.h>
 
-int* preorderTraversal(struct TreeNode* root, int* returnSize)
+int* morris_preorder(struct TreeNode* root, int* returnSize)
 {
-	struct myvector result;
-	struct TreeNode *cur, *node;
-	while(cur)
+	int* result = (int*) malloc(sizeof(int) * (*returnSize));
+	int cnt = 0;
+	struct TreeNode *curr = root, *node;
+	while(curr)
 	{
-		if(cur->left == NULL)
+		if(curr->left == NULL)
 		{
-			result.push_back(&result, cur->val);
-			cur = cur->right;
+			result[cnt++] = curr->val;
+			curr = curr->right;
 		}
 		else
 		{
-			node = cur->left;
-			while(node->right && node->right != cur)
+			node = curr->left;
+			while(node->right && node->right != curr)
 				node = node->right;
 
 			if(node->right == NULL)
 			{
-				result.push_back(&result, cur->val);
-				node->right = cur;
-				cur = cur->left;
+				result[cnt++] = curr->val;
+				node->right = curr;
+				curr = curr->left;
 			}
 			else
 			{
 				node->right = NULL;
-				cur = cur->right;
+				curr = curr->right;
 			}
 		}
 	}
-	*returnSize = result.size(&result);
-	return result.data;
+	return result;
 }
 
 

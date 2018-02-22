@@ -17,18 +17,18 @@ vector<int> StackTraversal::preorderTraversal(TreeNode* root)
 {
 	vector<int> result;
 	stack<TreeNode*> fringe;
-	TreeNode* cur = root;
-	while(cur or not fringe.empty())
+	TreeNode* curr = root;
+	while(curr or not fringe.empty())
 	{
-		while(cur)
+		while(curr)
 		{
-			fringe.push(cur);
-			result.push_back(cur->val);
-			cur = cur->left;
+			fringe.push(curr);
+			result.push_back(curr->val);
+			curr = curr->left;
 		}
-		cur = fringe.top();
+		curr = fringe.top();
 		fringe.pop();
-		cur = cur->right;
+		curr = curr->right;
 	}
 	return result;
 }
@@ -36,19 +36,19 @@ vector<int> StackTraversal::preorderTraversal(TreeNode* root)
 vector<int> StackTraversal::inorderTraversal(TreeNode* root)
 {
 	vector<int> result;
-	TreeNode* cur = root;
+	TreeNode* curr = root;
 	stack<TreeNode*> fringe;
-	while(cur or not fringe.empty())
+	while(curr or not fringe.empty())
 	{
-		while(cur)
+		while(curr)
 		{
-			fringe.push(cur);
-			cur = cur->left;
+			fringe.push(curr);
+			curr = curr->left;
 		}
-		cur = fringe.top();
+		curr = fringe.top();
 		fringe.pop();
-		result.push_back(cur->val);
-		cur = cur->right;
+		result.push_back(curr->val);
+		curr = curr->right;
 	}
 	return result;
 }
@@ -56,21 +56,25 @@ vector<int> StackTraversal::inorderTraversal(TreeNode* root)
 vector<int> StackTraversal::postorderTraversal(TreeNode* root)
 {
 	vector<int> result;
-	TreeNode* cur = root;
-	stack<TreeNode*> fringe;
-	while(cur or not fringe.empty())
+	TreeNode* curr = root;
+	stack<pair<TreeNode*, bool> > fringe;
+	while(curr or not fringe.empty())
 	{
-		while(cur)
+		while(curr)
 		{
-			fringe.push(cur);
-			result.push_back(cur->val);
-			cur = cur->right;
+			fringe.push({curr, false});
+			curr = curr->left;
 		}
-		cur = fringe.top();
-		fringe.pop();
-		cur = cur->left;
+		if(fringe.top().second == false)
+		{
+			fringe.top().second = true;
+			curr = fringe.top().first->right;
+		}
+		else
+		{
+			result.push_back(fringe.top().first->val);
+			fringe.pop();
+		}
 	}
-	for(int i = 0; i < result.size()/2; i++)
-		swap(result[i], result[result.size() - 1 - i]);
 	return result;
 }

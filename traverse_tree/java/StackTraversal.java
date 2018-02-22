@@ -1,4 +1,3 @@
-
 import java.lang.Integer;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -11,17 +10,17 @@ public class StackTraversal implements TraversalMethods
 	{
 		List<Integer> result = new ArrayList<Integer>();
 		ArrayDeque<TreeNode> stack = new ArrayDeque<TreeNode>();
-		TreeNode cur = root;
-		while(cur != null || stack.peekFirst() != null)
+		TreeNode curr = root;
+		while(curr != null || stack.peekFirst() != null)
 		{
-			while(cur != null)
+			while(curr != null)
 			{
-				result.add(cur.val);
-				stack.addFirst(cur);
-				cur = cur.left;
+				result.add(curr.val);
+				stack.addFirst(curr);
+				curr = curr.left;
 			}
-			cur = stack.pollFirst();
-			cur = cur.right;
+			curr = stack.pollFirst();
+			curr = curr.right;
 		}
 		return result;
 	}
@@ -29,37 +28,51 @@ public class StackTraversal implements TraversalMethods
 	{
 		List<Integer> result = new ArrayList<Integer>();
 		ArrayDeque<TreeNode> stack = new ArrayDeque<TreeNode>();
-		TreeNode cur = root;
-		while(cur != null || stack.peekFirst() != null)
+		TreeNode curr = root;
+		while(curr != null || stack.peekFirst() != null)
 		{
-			while(cur != null)
+			while(curr != null)
 			{
-				stack.addFirst(cur);
-				cur = cur.left;
+				stack.addFirst(curr);
+				curr = curr.left;
 			}
-			cur = stack.pollFirst();
-			result.add(cur.val);
-			cur = cur.right;
+			curr = stack.pollFirst();
+			result.add(curr.val);
+			curr = curr.right;
 		}
 		return result;
 	}
 	public List<Integer> postorderTraversal(TreeNode root)
 	{
-		List<Integer> result = new ArrayList<Integer>();
-		ArrayDeque<TreeNode> stack = new ArrayDeque<TreeNode>();
-		TreeNode cur = root;
-		while(cur != null || stack.peekFirst() != null)
-		{
-			while(cur != null)
-			{
-				result.add(cur.val);
-				stack.addFirst(cur);
-				cur = cur.right;
+		class MyPair {
+			public TreeNode node; public boolean visited;
+			public MyPair(TreeNode node, boolean visited) {
+				this.node = node; this.visited = visited;
 			}
-			cur = stack.pollFirst();
-			cur = cur.left;
 		}
-		Collections.reverse(result);
+
+		List<Integer> result = new ArrayList<Integer>();
+		ArrayDeque<MyPair> stack = new ArrayDeque<MyPair>();
+		TreeNode curr = root;
+		while(curr != null || stack.peekFirst() != null)
+		{
+			while(curr != null)
+			{
+				stack.addFirst(new MyPair(curr, false));
+				curr = curr.left;
+			}
+			MyPair stackTop = stack.peek();
+			if(stackTop.visited == false)
+			{
+				stackTop.visited = true;
+				curr = stackTop.node.right;
+			}
+			else
+			{
+				stack.pop();
+				result.add(stackTop.node.val);
+			}
+		}
 		return result;
 	}
 }

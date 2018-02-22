@@ -37,13 +37,14 @@ struct TreeNode* generate_random_tree(int size)
 int test_traversal_methods(int* (*func)(struct TreeNode*, int*), int size)
 {
 	struct TreeNode* root = generate_random_tree(size);
+	root = 0;
 	return 1;
 }
 
 int main()
 {
 	typedef int* (*traversal)(struct TreeNode*, int*);
-	traversal funcs[] = { preorderTraversal };
+	traversal funcs[] = { morris_preorder };
 	int i;
 	for(i = 0; i < 1; i++)
 		if(!test_traversal_methods(funcs[i], 0))

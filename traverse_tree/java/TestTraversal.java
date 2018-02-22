@@ -62,11 +62,14 @@ public class TestTraversal
 		for(int i = 0; i < 3; i++)
 		{
 			if(ret.get(i).size() != ans.get(i).size())
+			{
+				System.out.println(tag[i] + " answer length error");
 				return false;
+			}
 			for(int j = 0; j < ans.get(i).size(); j++)
-				if(ret.get(i).get(j) != ans.get(i).get(j))
+				if(ret.get(i).get(j).compareTo(ans.get(i).get(j)) != 0)
 				{
-					System.out.println(tag[i] + " error");
+					System.out.println(tag[i] + " result error");
 					return false;
 				}
 		}
@@ -81,7 +84,10 @@ public class TestTraversal
 			int cases = 500;
 			for(int i = 0; i < cases; i++)
 				if(!testTraversalMethod(impl, 200))
+				{
 					System.out.println("WA: " + impl);
+					break;
+				}
 		}
 	}
 }

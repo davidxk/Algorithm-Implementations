@@ -10,7 +10,7 @@ void init(struct myvector* vec)
 	vec->destroy = destroy;
 	vec->_size = 0;
 	vec->_capacity = 512;
-	vec->data = (int*) malloc(sizeof(int) * vec->_capacity);
+	vec->data = (void**) malloc(sizeof(void*) * vec->_capacity);
 }
 
 int empty(struct myvector* vec)
@@ -23,18 +23,18 @@ int size(struct myvector* vec)
 	return vec->_size;
 }
  
-void push_back(struct myvector* vec, int num)
+void push_back(struct myvector* vec, void* elem)
 {
 	vec->_size++;
 	if(vec->_size > vec->_capacity)
 	{
-		int* newloc = (int*) malloc(sizeof(int) * vec->_capacity * 2);
-		memcpy(newloc, vec->data, sizeof(int) * vec->_capacity);
+		void* newloc = (void**) malloc(sizeof(void*) * vec->_capacity * 2);
+		memcpy(newloc, vec->data, sizeof(void*) * vec->_capacity);
 		free(vec->data);
 		vec->data = newloc;
 		vec->_capacity *= 2;
 	}
-	vec->data[vec->_size - 1] = num;
+	vec->data[vec->_size - 1] = elem;
 }
 
 void pop_back(struct myvector* vec)
@@ -42,7 +42,7 @@ void pop_back(struct myvector* vec)
 	vec->_size -= 1;
 }
 
-int back(struct myvector* vec)
+void* back(struct myvector* vec)
 {
 	return vec->data[vec->_size - 1];
 }
