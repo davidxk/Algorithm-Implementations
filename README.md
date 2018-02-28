@@ -1,5 +1,5 @@
 # Algorithm Implementations
-My implementations of classic algorithms and data structures in Python, C, C++11 and Java. 
+My implementations of classic algorithms and data structures in Python 2.7, C, C++11 and Java. 
 
 ## Features
 * Tests included

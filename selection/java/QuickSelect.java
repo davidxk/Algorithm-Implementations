@@ -3,20 +3,36 @@ import java.util.Random;
 public class QuickSelect implements SelectionAlgorithm
 {
 	private Random rand = new Random();
-	private int random_pivot(int[] array, int left, int right)
+	private void insertion_sort(int[] array, int left, int right)
 	{
-		int index = rand.nextInt(right - left + 1) + left;
-		array[index] = array[right] ^ array[index] ^(array[right]=array[index]);
+		int j, x;
+		for(int i = left + 1; i < right + 1; i++)
+		{
+			x = array[i];
+			j = i - 1;
+			for(j = i - 1; j >= left && x < array[j]; j--)
+				array[j + 1] = array[j];
+			array[j + 1] = x;
+		}
+	}
+	private int median3(int[] array, int left, int right)
+	{
+		int center = (left + right) / 2;
+		int tmp[] = { array[left], array[center], array[right] };
+		insertion_sort(tmp, 0, 2);
+		array[left] = tmp[0];
+		array[center] = tmp[2];
+		array[right] = tmp[1];
 		return array[right];
 	}
 	private int partition(int[] array, int left, int right)
 	{
-		int pivot = random_pivot(array, left, right);
+		int pivot = median3(array, left, right);
 		int i = left, j = right - 1;
 		while(true)
 		{
-			while(i <= right && array[i] < pivot) i++;
-			while(left <= j  && pivot < array[j]) j--;
+			while(array[i] < pivot) i++;
+			while(pivot < array[j]) j--;
 			if(i >= j)
 			{
 				array[i] = array[right] ^ array[i] ^ (array[right] = array[i]);
@@ -26,21 +42,22 @@ public class QuickSelect implements SelectionAlgorithm
 			i++; j--;
 		}
 	}
-	private int q_select(int[] array, int left, int right, int rank)
+	private void q_select(int[] array, int left, int right, int rank)
 	{
-		if(left == right)
-			return array[left];
+		if(right - left < 10)
+		{
+			insertion_sort(array, left, right);
+			return;
+		}
 		int center = partition(array, left, right);
-		int pivot_rank = center - left + 1;
-		if(rank == pivot_rank)
-			return array[center];
-		else if(rank < pivot_rank)
-			return q_select(array, left, center - 1, rank);
-		else
-			return q_select(array, center + 1, right, rank - pivot_rank);
+		if(rank < center)
+			q_select(array, left, center - 1, rank);
+		else if(rank > center)
+			q_select(array, center + 1, right, rank);
 	}
 	public int select(int[] array, int rank)
 	{
-		return q_select(array, 0, array.length - 1, rank);
+		q_select(array, 0, array.length - 1, rank - 1);
+		return array[rank - 1];
 	}
 }

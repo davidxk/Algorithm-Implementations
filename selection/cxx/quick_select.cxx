@@ -3,41 +3,59 @@
 #include <vector>
 using namespace std;
 
-int random_pivot(vector<int>& array, int left, int right);
+void insertion_sort(vector<int>& array, int left, int right);
+int median3(vector<int>& array, int left, int right);
 int partition(vector<int>& array, int left, int right);
-int q_select(vector<int>& array, int left, int right, int rank);
+void q_select(vector<int>& array, int left, int right, int rank);
 int quick_select(vector<int>& array, int rank);
 
 int quick_select(vector<int>& array, int rank)
 {
-	return q_select(array, 0, array.size() - 1, rank);
+	q_select(array, 0, array.size() - 1, rank - 1);
+	return array[rank - 1];
 }
 
-int q_select(vector<int>& array, int left, int right, int rank)
+void q_select(vector<int>& array, int left, int right, int rank)
 {
-	if(left == right)
-		return array[left];
+	if(right - left < 10)
+	{
+		insertion_sort(array, left, right);
+		return;
+	}
 	int center = partition(array, left, right);
-	int pivot_rank = center - left + 1;
-	if(rank == pivot_rank)
-		return array[center];
-	else if(rank < pivot_rank)
+	if(rank < center)
 		return q_select(array, left, center - 1, rank);
-	else
-		return q_select(array, center + 1, right, rank - pivot_rank);
+	else if(rank > center)
+		return q_select(array, center + 1, right, rank);
 }
 
-int random_pivot(vector<int>& array, int left, int right)
+void insertion_sort(vector<int>& array, int left, int right)
 {
-	int index = rand() % (right - left + 1) + left;
-	swap(array[index], array[right]);
+	int j, x;
+	for(int i = left + 1; i < right + 1; i++)
+	{
+		x = array[i];
+		for(j = i - 1; j >= left and x < array[j]; j--)
+			array[j + 1] = array[j];
+		array[j + 1] = x;
+	}
+}
+
+int median3(vector<int>& array, int left, int right)
+{
+	int center = (left + right) / 2;
+	vector<int> tmp = { array[left], array[center], array[right] }; 
+	insertion_sort(tmp, 0, 2);
+	array[left] = tmp[0];
+	array[right] = tmp[2];
+	array[center] = tmp[1];
 	return array[right];
 }
 
 int partition(vector<int>& array, int left, int right)
 {
-	int pivot = random_pivot(array, left, right);
-	int i = left, j = right - 1;
+	int pivot = median3(array, left, right);
+	int i = left + 1, j = right - 1;
 	while(true)
 	{
 		while(array[i] < pivot) i++;

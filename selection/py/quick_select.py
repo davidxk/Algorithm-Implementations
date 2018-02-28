@@ -1,13 +1,21 @@
+def insertion_sort(array, left, right):
+    for i in range(left + 1, right + 1):
+        x = array[i]
+        j = i - 1
+        while j >= left and x < array[j]:
+            array[j + 1] = array[j]
+            j -= 1
+        array[j + 1] = x
+
 def median3(array, left, right):
-    if right - left >= 2:
-        center = (left + right) / 2
-        a, b, c = sorted([array[left], array[center], array[right]])
-        array[left], array[center], array[right] = a, c, b
+    center = (left + right) / 2
+    a, b, c = sorted([array[left], array[center], array[right]])
+    array[left], array[center], array[right] = a, c, b
     return array[right]
 
 def partition(array, left, right):
     pivot = median3(array, left, right)
-    i, j = left, right - 1
+    i, j = left + 1, right - 1
     while True:
         while array[i] < pivot:
             i += 1
@@ -20,16 +28,15 @@ def partition(array, left, right):
         i, j = i + 1, j - 1
 
 def q_select(array, left, right, rank):
-    if left == right:
-        return array[right]
+    if right - left < 10:
+        insertion_sort(array, left, right)
+        return
     center = partition(array, left, right)
-    pivot_rank = center - left + 1
-    if rank == pivot_rank:
-        return array[center]
-    elif rank < pivot_rank:
-        return q_select(array, left, center - 1, rank)
-    else:
-        return q_select(array, center + 1, right, rank - pivot_rank)
+    if rank < center:
+        q_select(array, left, center - 1, rank)
+    elif rank > center:
+        q_select(array, center + 1, right, rank)
 
 def quick_select(array, rank):
-    return q_select(array, 0, len(array) - 1, rank)
+    q_select(array, 0, len(array) - 1, rank - 1)
+    return array[rank - 1]

@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include "quick_select.c"
 
 void perc_down(int* array, int i, int size)
@@ -31,13 +32,13 @@ void heap_sort(int* array, const int n)
 	}
 }
 
-int check_rand_select(int* array, int n, int rank, int retval)
+int check_selection(int* array, int n, int rank, int retval)
 {
 	heap_sort(array, n);
 	return array[rank - 1] == retval;
 }
 
-int test_rand_select()
+int test_selection()
 {
 	const int n = 5000;
 	int array[n];
@@ -48,7 +49,7 @@ int test_rand_select()
 			array[j] = rand() % (n * 2);
 		rank = rand() % n + 1;
 		retval = quick_select(array, n, rank);
-		if(!check_rand_select(array, n, rank, retval))
+		if(!check_selection(array, n, rank, retval))
 			return 0;
 	}
 	return 1;
@@ -56,6 +57,7 @@ int test_rand_select()
 
 int main()
 {
-	if(!test_rand_select())
+	srand(time(0));
+	if(!test_selection())
 		printf("WA: rand_select\n");
 }
