@@ -38,5 +38,5 @@ def q_sort(array, left, right):
     else:
         insertion_sort(array, left, right)
 
-def quick_sort_hoare(array):
+def quick_sort(array):
     q_sort(array, 0, len(array) - 1)
