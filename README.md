@@ -28,5 +28,6 @@ My implementations of classic algorithms and data structures in Python 2.7, C, C
 | math                | gcd                                               |
 | shuffle             | Fisher–Yates                                      |
 | dutch national flag | three way partition                               |
+<!--| majority            | majority vote                                     |-->
 <!--| recursion           | permutations, subsets                             |-->
 <!--| sampling            | selection-rejection, reservoir sampling           |-->

@@ -4,13 +4,13 @@
 
 | Algorithm | type | Graph type | Weighted | Graph representation | Time complexity|
 |-----------|------|------------|----------------------|--------------------|
-DFS | Single-source shortest paths | tree | weighted | tree | \\(O(V + E)\\)
-Viterbi | Single-source shortest paths | graph | weighted dag | adjacency list | \\(O(V + E)\\)
-BFS | Single-source shortest paths | graph | unweighted | adjacency list | \\(O(V + E)\\)
-Dijkstra's | Single-source shortest paths | graph | weighted+ | adjacency list | \\(O(E \log V)\\) \\(O(E + V \log V)\\)
-Bellman-Ford | Single-source shortest paths | graph | weighted | set of \\(V\\) & \\(E\\) | \\(O(VE)\\)
-Floyd-Warshall | All-pairs shortest paths | graph | weighted | set of \\(V\\) & \\(E\\) | \\(O(V^3)\\)
-Johnson's | All-pairs shortest paths | graph | weighted | adjacency list | \\(O(V^2\log V + VE)\\)
+| DFS | Single-source shortest paths | tree | weighted | tree | $O(V + E)$ |
+| Viterbi | Single-source shortest paths | graph | weighted dag | adjacency list | $O(V + E)$ |
+| BFS | Single-source shortest paths | graph | unweighted | adjacency list | $O(V + E)$ |
+| Dijkstra's | Single-source shortest paths | graph | weighted+ | adjacency list | $O(E \log V)$ $O(E + V \log V)$ |
+| Bellman-Ford | Single-source shortest paths | graph | weighted | set of $V$ & $E$ | $O(VE)$ |
+| Floyd-Warshall | All-pairs shortest paths | graph | weighted | set of $V$ & $E$ | $O(V^3)$ |
+| Johnson's | All-pairs shortest paths | graph | weighted | adjacency list | $O(V^2\log V + VE)$ |
 
 # Is DAG
 * Topological sort
@@ -33,19 +33,22 @@ A solution to a problem is an action sequence that leads from the initial state 
 
 
 | Algorithm | Time Complexity | Space Complexity | Complete | Optimal |
-|-----------|------|-------|--------|
-BFS | \\(O(b^d)\\) | \\(O(b^d)\\) | Yes | Yes
-Bidirectional | \\(O(b^{d/2})\\) | \\(O(b^{d/2})\\) | Yes | Yes
-Depth Limited | \\(O(b^l)\\) | \\(O(bl)\\) | No | No
-Iterative Deepening | \\(O(b^d)\\) | \\(O(bd)\\) | Yes | Yes
+|---------------------|--------------|--------------|-----|-----|
+| BFS                 | $O(b^d)$     | $O(b^d)$     | Yes | Yes |
+| Backward serach     | $O(\bar b^d)$| $O(\bar b^d)$| Yes | Yes |
+| Bidirectional       | $O(b^{d/2})$ | $O(b^{d/2})$ | Yes | Yes |
+| Depth Limited       | $O(b^l)$     | $O(bl)$      | No  | No  |
+| Iterative Deepening | $O(b^d)$     | $O(bd)$      | Yes | Yes |
 
-* \\(b\\): branching factor
-* \\(l\\): depth limit
-* \\(d\\): depth of the shallowest solution
+* $b$: branching factor
+* $\bar b$: branching factor backwards
+* $l$: depth limit
+* $d$: depth of the shallowest solution
 
 Note that 
 
 > * BFS is Dijkstra in unweighted graph
-> * Bidirectional is a faster version of BFS
-> * Depth Limited takes advantage of the knowledge of \\(d\\)'s upper bound \\(l\\)
+> * Backward search is faster when the branching factor backwards is smaller
+> * Bidirectional is a faster version of BFS when backward expansion is possible
+> * Depth Limited takes advantage of the knowledge of $d$'s upper bound $l$
 > * Iterative Deepening is a complete search algorithm that is space efficient
