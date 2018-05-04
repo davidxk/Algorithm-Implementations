@@ -6,7 +6,7 @@
 #     l
 #  r<=r
 #  Conclusion: 'left' always land at right of the boundary
-#   'right' at left of the boundary
+#              'right' at left of the boundary
 
 def binary_search(array, target):
     left, right = 0, len(array) - 1
@@ -34,6 +34,7 @@ def lower_bound(array, target):
     left, right = 0, len(array) - 1
     while left <= right:
         center = (left + right) / 2
+        # When equal search in left
         if array[center] < target:
             left = center + 1
         else:
@@ -44,6 +45,7 @@ def upper_bound(array, target):
     left, right = 0, len(array) - 1
     while left <= right:
         center = (left + right) / 2
+        # When equal search in right
         if array[center] <= target:
             left = center + 1
         else:

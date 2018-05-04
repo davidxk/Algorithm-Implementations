@@ -3,6 +3,8 @@
 # - Heapify runs percolate down for all layers above the leaf, bottom up
 # - Heappush inserts at bottom right and percolates up like bubble sort
 # - Heappop pops off the root, replaces it with bottom right and percolates down
+#
+# For node i, its children are 2*i+1 and 2*i+2
 
 def perc_down(array, i, size):
     x = array[i]

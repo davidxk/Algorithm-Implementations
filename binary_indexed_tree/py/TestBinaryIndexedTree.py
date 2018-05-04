@@ -8,10 +8,7 @@ class TestBinaryIndexedTree(unittest.TestCase):
         bit = BinaryIndexedTree(array)
         for cnt in range(100):
             i = randrange(100)
-            summation = 0
-            for k in range(i + 1):
-                summation += array[k]
-            self.assertEqual(summation, bit.getSum(i))
+            self.assertEqual(sum(array[:i + 1]), bit.getSum(i))
 
     def testUpdate(self):
         array = [randrange(100) for i in range(100)]
@@ -21,20 +18,14 @@ class TestBinaryIndexedTree(unittest.TestCase):
             array[index] += delta
             bit.update(index, delta)
             i = randrange(100)
-            summation = 0
-            for k in range(i + 1):
-                summation += array[k]
-            self.assertEqual(summation, bit.getSum(i))
+            self.assertEqual(sum(array[:i + 1]), bit.getSum(i))
 
     def testGetRange(self):
         array = [randrange(100) for i in range(100)]
         bit = BinaryIndexedTree(array)
         for cnt in range(100):
             i, j = randrange(50), randrange(50, 100)
-            summation = 0
-            for k in range(i, j + 1):
-                summation += array[k]
-            self.assertEqual(summation, bit.getRange(i, j))
+            self.assertEqual(sum(array[i: j + 1]), bit.getRange(i, j))
 
     def testBasic(self):
         array = [2, 1, 1, 3, 2, 3, 4, 5, 6, 7, 8, 9]

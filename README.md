@@ -8,6 +8,7 @@ My implementations of classic algorithms and data structures in Python 2.7, C, C
 
 ## Data Structures
 * Vector
+* Binary Search Tree
 * Heap
 * Disjoint Set (Union-Find)
 * Trie
@@ -28,6 +29,8 @@ My implementations of classic algorithms and data structures in Python 2.7, C, C
 | math                | gcd                                               |
 | shuffle             | Fisher–Yates                                      |
 | dutch national flag | three way partition                               |
+<!--| cycle detection     | cycle detection, cycle finding                    |-->
 <!--| majority            | majority vote                                     |-->
 <!--| recursion           | permutations, subsets                             |-->
 <!--| sampling            | selection-rejection, reservoir sampling           |-->
+

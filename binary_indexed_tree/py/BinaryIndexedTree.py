@@ -1,3 +1,12 @@
+# For node i, its parent is        i -= i & (-i)
+# For node i, its right sibling is i += i & (-i)
+# For the right most child, its right sibling is the right sibling
+#     of the first ancestor that is not a right-most child
+# Each node stores sum array[i - (i & (-i)): i + 1]
+# Each number array[i] appears in all right siblings of node i
+# Sum array[0: i + 1] is the sum from node i to the root
+# Sum array[: 13] = sum array[12] array[8: 12] array[:8]
+
 class BinaryIndexedTree:
     def __init__(self, array):
         self.tree = [0] + array
