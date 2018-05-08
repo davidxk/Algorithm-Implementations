@@ -6,21 +6,20 @@
 #
 # For node i, its children are 2*i+1 and 2*i+2
 
+# For everyone behind me, if you are shorter than me, step up
 def perc_down(array, i, size):
     x = array[i]
     child = None
     while i*2+1 < size:
         child = i * 2 + 1
-
-        if child != size - 1 and array[child] > array[child + 1]:
+        # Choose which path to go down
+        if child + 1 < size and array[child + 1] < array[child]:
             child += 1
-
         if array[child] < x:
             array[i] = array[child]
             i = child
         else:
             break
-
     array[i] = x
 
 def heapify(array):

@@ -11,7 +11,7 @@ def subsets(nums):
     def helper(start, buf, result):
         result.append(list(buf))
         for i in range(start, len(nums)):
-            buf.append(nums[start])
+            buf.append(nums[i])
             helper(i + 1, buf, result)
             buf.pop()
         return result
@@ -31,7 +31,7 @@ def subsetsWithDup(nums):
         result.append(list(buf))
         for i in range(start, len(nums)):
             if i == start or nums[i] != nums[i - 1]:
-                buf.append(nums[start])
+                buf.append(nums[i])
                 helper(i + 1, buf, result)
                 buf.pop()
         return result

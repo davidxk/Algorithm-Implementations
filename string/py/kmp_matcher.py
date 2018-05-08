@@ -8,7 +8,7 @@ def kmp_matcher(text, pattern):
         if pattern[matched] == text[i]:
             matched += 1
         if matched == len(pattern):
-            return i - len(pattern) + 1
+            return i + 1 - len(pattern)
     return -1
 
 def compute_prefix_function(pattern):
@@ -23,6 +23,7 @@ def compute_prefix_function(pattern):
     return pi
 
 if __name__ == '__main__':
+    print kmp_matcher("bacbababaabcbab", "ababaca")
     print kmp_matcher("hello world", "or")
     print kmp_matcher("mississippi", "issip")
     print kmp_matcher("bbaa", "aab")

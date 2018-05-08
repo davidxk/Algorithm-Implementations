@@ -92,8 +92,7 @@ class BinarySearchTree(BinaryTree):
             if target == root.val:
                 return root.val
             elif target < root.val:
-                if root.val - target < ceil - target:
-                    ceil = root.val 
+                ceil = root.val
                 root = root.left
             else:
                 root = root.right
@@ -108,8 +107,7 @@ class BinarySearchTree(BinaryTree):
             elif target < root.val:
                 root = root.left
             else:
-                if target - root.val < target - floor:
-                    floor = root.val
+                floor = root.val
                 root = root.right
         return floor
 

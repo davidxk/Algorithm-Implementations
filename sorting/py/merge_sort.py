@@ -1,15 +1,15 @@
 def merge_sort(array):
-    tmp = [None for i in range(len(array))]
-    m_sort(array, tmp, 0, len(array))
+    tmp = [None] * len(array)
+    m_sort(array, 0, len(array), tmp)
 
-def m_sort(array, tmp, left, right):
+def m_sort(array, left, right, tmp):
     if right - left > 1:
         center = (left + right) / 2
-        m_sort(array, tmp, left, center)
-        m_sort(array, tmp, center, right)
-        merge(array, tmp, left, center, right)
+        m_sort(array, left, center, tmp)
+        m_sort(array, center, right, tmp)
+        merge(array, left, center, right, tmp)
 
-def merge(array, tmp, left, center, right):
+def merge(array, left, center, right, tmp):
     i, j, k = left, center, 0
     while i < center and j < right:
         if array[i] < array[j]:

@@ -15,11 +15,11 @@ class TestLinkedListAlgorithms(unittest.TestCase):
 
     def testFindMiddle(self):
         size = 100
-        node = find_middle(getLinkedList(range(1, size + 1)))
+        node = find_middle(getLinkedList(range(size)))
         self.assertEqual(node.val, size / 2)
         size -= 1
-        node = find_middle(getLinkedList(range(1, size + 1)))
-        self.assertEqual(node.val, size / 2 + 1)
+        node = find_middle(getLinkedList(range(size)))
+        self.assertEqual(node.val, size / 2)
 
 from random import randrange
 from list_merge_sort import list_merge_sort

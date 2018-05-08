@@ -9,7 +9,14 @@ The **prefix function** for a pattern encapsulates knowledge about how the patte
 ### How to avoid useless work
 ![Why is KMP fast?](KMP.png)
 
-Consider the operation of the naive string matcher. Figure shows a particular shift \\(s\\) of a template containing the pattern \\(P = \\) ```ababaca``` against a text \\(T\\) . For this example, \\(q = 5\\) of the characters have matched successfully, but the 6th pattern character fails to match the corresponding text character. The information that \\(q\\) characters have matched successfully determines the corresponding text characters. Knowing these \\(q\\) text characters allows us to determine immediately that certain shifts are invalid. In the example of the figure, the shift \\(s + 1\\) is necessarily invalid, since the first pattern character ```(a)``` would be aligned with a text character that we know does not match the first pattern character, but does match the second pattern character ```(b)```. The shift \\(s' = s + 2\\) shown in part ```(b)``` of the figure, however, aligns the first three pattern characters with three text characters that must necessarily match. In general, it is useful to know the answer to the following question:
+Consider the operation of the naive string matcher. Figure shows a particular shift \\(s\\) of a template containing the pattern \\(P = \\) ```ababaca``` against a text \\(T\\) . For this example, \\(q = 5\\) of the characters have matched successfully, but the 6th pattern character fails to match the corresponding text character. The information that \\(q\\) characters have matched successfully determines the corresponding text characters. Knowing these \\(q\\) text characters allows us to determine immediately that certain shifts are invalid.
+
+| ~ i ~    | 0   | 1   | 2   | 3   | 4   | 5   | 6   |
+| -------- | --- | --- | --- | --- | --- | --- | --- |
+| $P[i]$   | `a` | `b` | `a` | `b` | `a` | `c` | `a` |
+| $\pi[i]$ | 0   | 0   | 1   | 2   | 3   | 0   | 1   |
+
+In the example of the figure, the shift \\(s + 1\\) is necessarily invalid, since the first "pattern character" ```a``` would be aligned with a "text character" that we know does not match the first "pattern character". The shift \\(s' = s + 2\\) shown in part ```(b)``` of the figure, however, aligns the first three pattern characters with three text characters that must necessarily match. In general, it is useful to know the answer to the following question:
 
 Given ```Pattern[0: q]``` matches ```Text[shift: shift + q]``` (```Pattern[q] != Text[shift + q]```), what is the least shift ```_shift > shift``` such that ```Text[_shift: _shift + k] == Pattern[0: k]```? 
 

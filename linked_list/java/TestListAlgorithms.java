@@ -11,7 +11,7 @@ public class TestListAlgorithms
 			array[i] = i;
 		ListNode head = ListNode.getLinkedList(array);
 		ListNode middle = LinkedListAlgorithms.findMiddle(head);
-		assert middle.val == (size - 1) / 2;
+		assert middle.val == size / 2;
 	}
 	public static void testReverse()
 	{

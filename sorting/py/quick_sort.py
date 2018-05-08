@@ -4,10 +4,9 @@
 def insertion_sort(array, left, right):
     for i in range(left + 1, right + 1):
         x = array[i]
-        j = i - 1
-        while j >= left and array[j] > x:
-            array[j + 1] = array[j]
-            j -= 1
+        for j in range(i - 1, -1, -1)
+            if array[j] > x:
+                array[j + 1] = array[j]
         array[j + 1] = x
 
 def median3(array, left, right):

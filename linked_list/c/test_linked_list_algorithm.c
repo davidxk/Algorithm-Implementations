@@ -14,7 +14,7 @@ void test_find_middle(int size)
 		array[i] = i;
 	ListNode* head = get_linked_list(array, size);
 	ListNode* middle = find_middle(head);
-	assert(middle->val == (size - 1) / 2);
+	assert(middle->val == size / 2);
 	free(array);
 	destroy_linked_list(head);
 }
