@@ -17,7 +17,6 @@ class BinaryTree:
             return result
         return helper(self.root, [])
 
-
 class BinarySearchTree(BinaryTree):
     def add(self, target):
         if self.root is None:
@@ -58,7 +57,7 @@ class BinarySearchTree(BinaryTree):
         # Use right child to take its place, successor to take its left orphan
         self.root = helper(self.root, target)
 
-    def contains(self, target):
+    def __contains__(self, target):
         root = self.root
         while root:
             if root.val == target:
@@ -115,20 +114,105 @@ class BinarySearchTree(BinaryTree):
         root = self.root
         upper = float("inf")
         while root:
-            if root.val <= target:
+            if target == root.val:
                 root = root.right
-            else: # target < root.val
-                if root.val - target < upper - target:
-                    upper = root.val
+            elif target < root.val:
+                upper = root.val
                 root = root.left
+            else: # root.val < target
+                root = root.right
+        return upper
 
     def lower(self, target):
         root = self.root
         lower = float("-inf")
         while root:
-            if target <= root.val:
+            if target == root.val:
+                root = root.left
+            elif target < root.val:
                 root = root.left
             else: # root.val < target
-                if target - root.val < target - lower:
-                    lower = root.val
+                lower = root.val
                 root = root.right
+        return lower
+
+    def __iter__(self):
+        return BSTIterator(self.root)
+
+class RecursiveImpl(BinarySearchTree):
+    def add(self, target):
+        def helper(root, target):
+            if root is None:
+                return TreeNode(target)
+            elif target == root.val:
+                pass
+            elif target < root.val:
+                root.left = helper(root.left, target)
+            else:
+                root.right = helper(root.right, target)
+            return root
+        self.root = helper(self.root, target)
+
+    def __contains__(self, target):
+        def helper(root, target):
+            if root is None:
+                return False
+            elif target == root.val:
+                return True
+            elif target < root.val:
+                return helper(root.left, target)
+            else:
+                return helper(root.right, target)
+        return helper(self.root, target)
+
+    def first(self):
+        def helper(root):
+            if root is None:
+                raise KeyError("get first from empty bst")
+            elif root.left:
+                return helper(root.left)
+            else:
+                return root.val
+        return helper(self.root)
+
+    def last(self):
+        def helper(root):
+            if root is None:
+                raise KeyError("get last from empty bst")
+            elif root.right:
+                return helper(root.right)
+            else:
+                return root.val
+        return helper(self.root)
+
+class BSTIterator(object):
+    def __init__(self, root):
+        self.root = root
+        self.curr = None
+
+    def __iter__(self):
+        return self
+
+    def next(self):
+        if self.curr is None:
+            self.curr = self.root
+            while self.curr.left:
+                self.curr = self.curr.left
+        elif self.curr.right:
+            succ = self.curr.right
+            while succ.left:
+                succ = succ.left
+            self.curr = succ
+        else:
+            succ = None
+            root = self.root
+            while self.curr.val != root.val:
+                if self.curr.val < root.val:
+                    succ = root
+                    root = root.left
+                else:
+                    root = root.right
+            self.curr = succ
+        if self.curr is None:
+            raise StopIteration
+        return self.curr

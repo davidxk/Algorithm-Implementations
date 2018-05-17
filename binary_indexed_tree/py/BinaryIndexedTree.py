@@ -1,5 +1,5 @@
-# For node i, its parent is        i -= i & (-i)
-# For node i, its right sibling is i += i & (-i)
+# For node i, its parent is        i - (i & (-i))
+# For node i, its right sibling is i + (i & (-i))
 # For the right most child, its right sibling is the right sibling
 #     of the first ancestor that is not a right-most child
 # Each node stores sum array[i - (i & (-i)): i + 1]
@@ -11,9 +11,9 @@ class BinaryIndexedTree:
     def __init__(self, array):
         self.tree = [0] + array
         for i in range(len(self.tree)):
-            j = i + (i & (-i))
-            if j < len(self.tree):
-                self.tree[j] += self.tree[i]
+            sib = i + (i & (-i))
+            if sib < len(self.tree):
+                self.tree[sib] += self.tree[i]
 
     def getSum(self, i):
         i += 1

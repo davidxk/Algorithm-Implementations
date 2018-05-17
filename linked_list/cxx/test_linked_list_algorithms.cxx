@@ -5,6 +5,7 @@
 
 #include "find_middle.h"
 #include "reverse_linked_list.h"
+#include "cycle_detection.h"
 #include "LinkedList.h"
 #include "list_merge_sort.h"
 
@@ -31,6 +32,34 @@ void test_reverse_linked_list()
 	{
 		assert(array[i] == curr->val);
 		curr = curr->next;
+	}
+	destroyLinkedList(head);
+}
+
+void test_cycle_deetection()
+{
+	const int size = 100;
+	std::vector<ListNode*> nodes;
+	ListNode* head = new ListNode(0);
+	ListNode *prev = head, *curr = NULL;
+	nodes.push_back(head);
+	for(int i = 1; i < size; i++)
+	{
+		curr = new ListNode(i);
+		nodes.push_back(curr);
+		prev->next = curr;
+	}
+	if(rand() > RAND_MAX / 2)
+	{
+		int index = rand() % nodes.size();
+		curr->next = nodes[index];
+		assert(cycle_detection(head));
+		assert(cycle_finding(head) == nodes[index]);
+	}
+	else
+	{
+		assert(not cycle_detection(head));
+		assert(cycle_finding(head) == nullptr);
 	}
 	destroyLinkedList(head);
 }

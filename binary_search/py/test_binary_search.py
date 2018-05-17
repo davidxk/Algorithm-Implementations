@@ -61,7 +61,6 @@ def test_lower_bound(lower_bound, scale = 100):
             return False
     return True
 
-
 def test_binary_search(search, scale = 100):
     size = int(5000 * scale)
     array = [i for i in range(size)]

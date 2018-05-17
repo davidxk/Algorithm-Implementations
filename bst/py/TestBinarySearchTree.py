@@ -1,5 +1,6 @@
 import unittest
-from BinarySearchTree import BinarySearchTree
+from BinarySearchTree import *
+from bisect import bisect, bisect_left
 from random import randrange
 
 class TestBinarySearchTree(unittest.TestCase):
@@ -38,10 +39,9 @@ class TestBinarySearchTree(unittest.TestCase):
             self.setUp()
 
     def test_contains(self):
-        for i in range(100):
-            self.setUp()
-            target = randrange(2000)
-            self.assertEqual(self.bst.contains(target), target in self.array)
+        numset = set(self.array)
+        for target in range(len(self.array)):
+            self.assertEqual(target in self.bst, target in numset)
 
     def test_first(self):
         for i in range(100):
@@ -54,26 +54,58 @@ class TestBinarySearchTree(unittest.TestCase):
             self.assertEqual(self.bst.last(), max(self.array))
 
     def test_floor(self):
-        self.array = set(self.array)
-        for i in range(1000):
-            floor = i
-            for j in range(1000):
-                if i - j in self.array:
-                    floor = i - j
-                    break
-            if i >= self.bst.first():
-                self.assertEqual(self.bst.floor(i), floor)
+        self.array.sort()
+        for target in range(len(self.array)):
+            idx = bisect_left(self.array, target)
+            if idx < len(self.array) and self.array[idx] == target:
+                floor = target
+            elif idx == 0:
+                floor = float("-inf")
+            else:
+                floor = self.array[idx - 1]
+            self.assertEqual(self.bst.floor(target), floor)
 
     def test_ceiling(self):
-        self.array = set(self.array)
-        for i in range(1000):
-            ceiling = i
-            for j in range(1000):
-                if i + j in self.array:
-                    ceiling = i + j
+        self.array.sort()
+        for target in range(len(self.array)):
+            idx = bisect(self.array, target)
+            if idx > 0 and self.array[idx - 1] == target:
+                ceiling = target
+            elif idx == len(self.array):
+                ceiling = float("inf")
+            else:
+                ceiling = self.array[idx]
+            self.assertEqual(self.bst.ceiling(target), ceiling)
+
+    def test_lower(self):
+        self.array.sort()
+        for i in range(len(self.array)):
+            x = self.array[i]
+            for j in range(i - 1, -1, -1):
+                if self.array[j] < x:
+                    lower = self.array[j]
                     break
-            if i <= self.bst.last():
-                self.assertEqual(self.bst.ceiling(i), ceiling)
+            else:
+                lower = float("-inf")
+            self.assertEqual(self.bst.lower(x), lower)
+
+    def test_upper(self):
+        self.array.sort()
+        for i in range(len(self.array)):
+            x = self.array[i]
+            for j in range(i + 1, len(self.array)):
+                if self.array[j] > x:
+                    upper = self.array[j]
+                    break
+            else:
+                upper = float("inf")
+            self.assertEqual(self.bst.upper(x), upper)
+
+    def test_iter(self):
+        it = iter(self.bst)
+        nums = self.bst.inorderTraversal()
+        for num in nums:
+            self.assertEqual(num, next(it).val)
 
 if __name__ == '__main__':
     unittest.main()

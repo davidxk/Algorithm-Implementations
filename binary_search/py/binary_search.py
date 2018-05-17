@@ -35,18 +35,22 @@ def lower_bound(array, target):
     while left <= right:
         center = (left + right) / 2
         # When equal search in left
-        if array[center] < target:
+        if array[center] == target:
+            right = center - 1
+        elif array[center] < target:
             left = center + 1
         else:
             right = center - 1
-    return left - 1
+    return right
 
 def upper_bound(array, target):
     left, right = 0, len(array) - 1
     while left <= right:
         center = (left + right) / 2
         # When equal search in right
-        if array[center] <= target:
+        if array[center] == target:
+            left = center + 1
+        elif array[center] < target:
             left = center + 1
         else:
             right = center - 1

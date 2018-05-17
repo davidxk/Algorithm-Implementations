@@ -84,6 +84,10 @@ class DisjointSetLinkBySize:
             mapping[self.find_set(child)].append(child)
         return mapping.values()
 
+    def component_size(self, elem):
+        root = self.find_set(elem)
+        return self.size[root]
+
     def max_size(self):
         return max(self.size.values()) if self.size else 0
     '''
