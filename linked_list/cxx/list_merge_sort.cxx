@@ -2,6 +2,8 @@
 #include "LinkedList.h"
 
 static ListNode* find_middle(ListNode* head);
+static ListNode* list_m_sort(ListNode* head);
+static ListNode* list_merge(ListNode* l1, ListNode* l2);
 
 ListNode* list_merge_sort(ListNode* head)
 {

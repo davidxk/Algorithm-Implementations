@@ -4,6 +4,7 @@
 #include <time.h>
 #include "find_middle.h"
 #include "reverse_linked_list.h"
+#include "cycle_detection.h"
 #include "list_merge_sort.h"
 
 void test_find_middle(int size)
@@ -34,6 +35,40 @@ void test_reverse_linked_list()
 		curr = curr->next;
 	}
 	free(array);
+	destroy_linked_list(head);
+}
+
+void test_cycle_detection()
+{
+	const int size = 100;
+	ListNode* nodes[size];
+	ListNode* head = (ListNode*) malloc(sizeof(ListNode));
+	head->val = 0;
+	head->next = NULL;
+	ListNode *prev = head, *curr = NULL;
+	nodes[0] = head;
+	for(int i = 1; i < size; i++)
+	{
+		curr = (ListNode*)malloc(sizeof(ListNode));
+		curr->val = i;
+		curr->next = NULL;
+		nodes[i] = curr;
+		prev->next = curr;
+		prev = curr;
+	}
+	if(rand() > RAND_MAX / 2)
+	{
+		int index = rand() % size;
+		curr->next = nodes[index];
+		assert(cycle_detection(head));
+		assert(cycle_finding(head) == nodes[index]);
+		curr->next = NULL;
+	}
+	else
+	{
+		assert(!cycle_detection(head));
+		assert(cycle_finding(head) == NULL);
+	}
 	destroy_linked_list(head);
 }
 
@@ -80,6 +115,7 @@ int main()
 	test_find_middle(99);
 	test_find_middle(1);
 	test_reverse_linked_list();
+	test_cycle_detection();
 	test_list_sort_impl(list_merge_sort);
 	return 0;
 }

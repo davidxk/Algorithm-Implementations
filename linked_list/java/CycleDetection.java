@@ -1,7 +1,7 @@
 
 class CycleDetection
 {
-	public boolean detectCycle(ListNode head)
+	static public boolean detectCycle(ListNode head)
 	{
 		ListNode fast = head, slow = head;
 		while(fast != null && fast.next != null)
@@ -13,7 +13,7 @@ class CycleDetection
 		}
 		return false;
 	}
-	public boolean findCycle(ListNode head)
+	static public ListNode findCycle(ListNode head)
 	{
 		ListNode fast = head, slow = head;
 		while(fast != null && fast.next != null)

@@ -27,7 +27,7 @@ public class TestSortImpl
 		funcs.add( new BubbleSort() );
 		funcs.add( new InsertionSort() );
 		funcs.add( new MergeSort() );
-		funcs.add( new QuicksortHoare() );
+		funcs.add( new QuickSort() );
 		funcs.add( new HeapSort() );
 		for(SortAlgorithm func: funcs)
 			if(!checkSortImpl(func))

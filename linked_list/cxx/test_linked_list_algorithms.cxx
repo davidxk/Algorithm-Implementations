@@ -36,7 +36,7 @@ void test_reverse_linked_list()
 	destroyLinkedList(head);
 }
 
-void test_cycle_deetection()
+void test_cycle_detection()
 {
 	const int size = 100;
 	std::vector<ListNode*> nodes;
@@ -48,6 +48,7 @@ void test_cycle_deetection()
 		curr = new ListNode(i);
 		nodes.push_back(curr);
 		prev->next = curr;
+		prev = curr;
 	}
 	if(rand() > RAND_MAX / 2)
 	{
@@ -55,11 +56,12 @@ void test_cycle_deetection()
 		curr->next = nodes[index];
 		assert(cycle_detection(head));
 		assert(cycle_finding(head) == nodes[index]);
+		curr->next = NULL;
 	}
 	else
 	{
 		assert(not cycle_detection(head));
-		assert(cycle_finding(head) == nullptr);
+		assert(cycle_finding(head) == NULL);
 	}
 	destroyLinkedList(head);
 }
@@ -89,6 +91,7 @@ int main()
 	test_find_middle(99);
 	test_find_middle(1);
 	test_reverse_linked_list();
+	test_cycle_detection();
 	test_list_sort_impl(list_merge_sort);
 	return 0;
 }

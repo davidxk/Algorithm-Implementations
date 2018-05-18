@@ -22,40 +22,47 @@ class BinarySearchTree(BinaryTree):
         if self.root is None:
             self.root = TreeNode(target)
             return
-        root = self.root
-        while root:
-            prev = root
-            if root.val == target:
+        prev = None
+        curr = self.root
+        while curr:
+            prev = curr
+            if curr.val == target:
                 return
-            elif target < root.val:
-                root = root.left
+            elif target < curr.val:
+                curr = curr.left
             else:
-                root = root.right
+                curr = curr.right
         if target < prev.val:
             prev.left = TreeNode(target)
         else:
             prev.right = TreeNode(target)
 
     def remove(self, target):
-        def helper(root, target):
-            if root is None:
-                return root
-            elif target < root.val:
-                root.left = helper(root.left, target)
-            elif root.val < target:
-                root.right = helper(root.right, target)
+        # FIXME: Mistyrious performance issue with Py2
+        prev = None
+        curr = self.root
+        while curr and target != curr.val:
+            prev = curr
+            if target < curr.val:
+                curr = curr.left
             else:
-                if root.left and root.right:
-                    succ = root.right
-                    while succ.left:
-                        succ = succ.left
-                    succ.left = root.left
-                    root = root.right
-                else:
-                    return root.left or root.right
-            return root
-        # Use right child to take its place, successor to take its left orphan
-        self.root = helper(self.root, target)
+                curr = curr.right
+        if curr is None:
+            return
+        if curr.left and curr.right:
+            succ = curr.right
+            while succ.left:
+                succ = succ.left
+            succ.left = curr.left
+            curr = curr.right
+        else:
+            curr = curr.left or curr.right
+        if prev is None:
+            self.root = curr
+        elif target < prev.val:
+            prev.left = curr
+        else:
+            prev.right = curr
 
     def __contains__(self, target):
         root = self.root
@@ -110,18 +117,18 @@ class BinarySearchTree(BinaryTree):
                 root = root.right
         return floor
 
-    def upper(self, target):
+    def higher(self, target):
         root = self.root
-        upper = float("inf")
+        higher = float("inf")
         while root:
             if target == root.val:
                 root = root.right
             elif target < root.val:
-                upper = root.val
+                higher = root.val
                 root = root.left
             else: # root.val < target
                 root = root.right
-        return upper
+        return higher
 
     def lower(self, target):
         root = self.root
@@ -151,6 +158,27 @@ class RecursiveImpl(BinarySearchTree):
             else:
                 root.right = helper(root.right, target)
             return root
+        self.root = helper(self.root, target)
+
+    def remove(self, target):
+        def helper(root, target):
+            if root is None:
+                return root
+            elif target < root.val:
+                root.left = helper(root.left, target)
+            elif root.val < target:
+                root.right = helper(root.right, target)
+            else:
+                if root.left and root.right:
+                    succ = root.right
+                    while succ.left:
+                        succ = succ.left
+                    succ.left = root.left
+                    root = root.right
+                else:
+                    return root.left or root.right
+            return root
+        # Use right child to take its place, successor to take its left orphan
         self.root = helper(self.root, target)
 
     def __contains__(self, target):
@@ -194,6 +222,9 @@ class BSTIterator(object):
         return self
 
     def next(self):
+        return self.__next__()
+
+    def __next__(self):
         if self.curr is None:
             self.curr = self.root
             while self.curr.left:

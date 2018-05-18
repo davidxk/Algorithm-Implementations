@@ -4,15 +4,15 @@
 void insertion_sort(int *array, const int n)
 {
 	int i, j;
-	for(i = 0; i < n; i++)
+	int x;
+	for(i = 1; i < n; i++)
 	{
-		int x = array[i];
-		j = i - 1;
-		while(j >= 0 && array[j] > x)
-		{
-			array[j + 1] = array[j];
-			j -= 1;
-		}
+		x = array[i];
+		for(j = i - 1; j >= 0; j--)
+			if(array[j] > x)
+				array[j + 1] = array[j];
+			else
+				break;
 		array[j + 1] = x;
 	}
 }

@@ -89,17 +89,17 @@ class TestBinarySearchTree(unittest.TestCase):
                 lower = float("-inf")
             self.assertEqual(self.bst.lower(x), lower)
 
-    def test_upper(self):
+    def test_higher(self):
         self.array.sort()
         for i in range(len(self.array)):
             x = self.array[i]
             for j in range(i + 1, len(self.array)):
                 if self.array[j] > x:
-                    upper = self.array[j]
+                    higher = self.array[j]
                     break
             else:
-                upper = float("inf")
-            self.assertEqual(self.bst.upper(x), upper)
+                higher = float("inf")
+            self.assertEqual(self.bst.higher(x), higher)
 
     def test_iter(self):
         it = iter(self.bst)

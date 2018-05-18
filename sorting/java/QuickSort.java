@@ -1,17 +1,17 @@
 
-public class QuicksortHoare implements SortAlgorithm
+public class QuickSort implements SortAlgorithm
 {
 	public void insertionSort(int[] array, int left, int right)
 	{
+		int j;
 		for(int i = left + 1; i < right + 1; i++)
 		{
 			int x = array[i];
-			int j = i - 1;
-			while(j >= left && array[j] > x)
-			{
-				array[j + 1] = array[j];
-				j--;
-			}
+			for(j = i - 1; j >= 0; j--)
+				if(array[j] > x)
+					array[j + 1] = array[j];
+				else
+					break;
 			array[j + 1] = x;
 		}
 	}

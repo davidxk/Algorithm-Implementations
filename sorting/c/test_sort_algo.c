@@ -5,7 +5,7 @@
 #include "selection_sort.c"
 #include "bubble_sort.c"
 #include "merge_sort.c"
-#include "quick_sort_hoare.c"
+#include "quick_sort.c"
 #include "heap_sort.c"
 
 const int N = 5000;
@@ -52,7 +52,7 @@ int main()
 	const int NFUNC = 6;
 	typedef void (*sort_func)(int*, const int);
 	sort_func funcs[] = { insertion_sort, selection_sort, bubble_sort, 
-		merge_sort, quick_sort_hoare, heap_sort
+		merge_sort, quick_sort, heap_sort
 	};
 	int i;
 	for(i = 0; i < NFUNC; i++)

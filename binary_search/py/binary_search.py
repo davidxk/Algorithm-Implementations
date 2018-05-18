@@ -30,7 +30,7 @@ def general_binary_search(array, isRight):
             right = center - 1
     return left
 
-def lower_bound(array, target):
+def lower(array, target):
     left, right = 0, len(array) - 1
     while left <= right:
         center = (left + right) / 2
@@ -43,7 +43,7 @@ def lower_bound(array, target):
             right = center - 1
     return right
 
-def upper_bound(array, target):
+def higher(array, target):
     left, right = 0, len(array) - 1
     while left <= right:
         center = (left + right) / 2

@@ -26,6 +26,34 @@ public class TestListAlgorithms
 			curr = curr.next;
 		}
 	}
+	public static void testCycleDetection()
+	{
+		final int size = 100;
+		ListNode nodes[] = new ListNode[size];
+		ListNode head = new ListNode(0);
+		ListNode prev = head, curr = null;
+		nodes[0] = head;
+		for(int i = 1; i < size; i++)
+		{
+			curr = new ListNode(i);
+			nodes[i] = curr;
+			prev.next = curr;
+			prev = curr;
+		}
+		if(myrand.nextFloat() > 0.5)
+		{
+			int index = myrand.nextInt() % nodes.length;
+			curr.next = nodes[index];
+			assert(CycleDetection.detectCycle(head));
+			assert(CycleDetection.findCycle(head) == nodes[index]);
+			curr.next = null;
+		}
+		else
+		{
+			assert(!CycleDetection.detectCycle(head));
+			assert(CycleDetection.findCycle(head) == null);
+		}
+	}
 	public static void testListSortImpl(ListSortAlgorithm func)
 	{
 		final int size = 100;
@@ -47,6 +75,7 @@ public class TestListAlgorithms
 		testFindMiddle(100);
 		testFindMiddle(99);
 		testReverse();
+		testCycleDetection();
 		testListSortImpl(new ListMergeSort());
 	}
 }

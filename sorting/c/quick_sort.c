@@ -1,6 +1,6 @@
 #include "swap.h"
 
-void quick_sort_hoare(int* array, const int n);
+void quick_sort(int* array, const int n);
 void q_sort(int* array, int left, int right);
 int partition(int* array, int left, int right);
 int median3(int *array, int left, int right);
@@ -12,17 +12,16 @@ void _insertion_sort(int* array, int left, int right)
 	for(i = left + 1; i < right + 1; i++)
 	{
 		x = array[i];
-		j = i - 1;
-		while(j >= left && array[j] > x)
-		{
-			array[j + 1] = array[j];
-			j--;
-		}
+		for(j = i - 1; j >= 0; j--)
+			if(array[j] > x)
+				array[j + 1] = array[j];
+			else
+				break;
 		array[j + 1] = x;
 	}
 }
 
-void quick_sort_hoare(int* array, const int n)
+void quick_sort(int* array, const int n)
 {
 	q_sort(array, 0, n - 1);
 }
