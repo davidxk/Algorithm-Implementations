@@ -1,3 +1,15 @@
+# For even length
+# O O $
+#sf    
+# ^ s f
+#
+# For odd length
+# O O O $
+#sf    
+# ^ s f
+# ^   s   f
+# Time:  O(n)
+# Space: O(1)
 
 def find_middle(head):
     fast = slow = head

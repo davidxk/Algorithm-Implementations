@@ -1,3 +1,4 @@
+# Time:  O(n) worst case
 
 def insertion_sort(array, left, right):
     for i in range(left + 1, right + 1):

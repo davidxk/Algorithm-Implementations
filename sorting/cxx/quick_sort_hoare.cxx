@@ -21,7 +21,7 @@ void insertion_sort(vector<int>& array, int left, int right)
 	for(int i = left + 1; i < right + 1; i++)
 	{
 		int x = array[i];
-		for(j = i - 1; j >= 0; j--)
+		for(j = i - 1; j >= left; j--)
 			if(array[j] > x)
 				array[j + 1] = array[j];
 			else

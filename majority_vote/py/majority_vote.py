@@ -1,6 +1,7 @@
-# Boyer–Moore majority vote algorithm finds the majority element of a sequence
-# Using linear time and constant space, given count(majority) > length / 2
-# If majority is less than half, sort and count witin O(n log n) time
+# Boyer–Moore majority vote algorithm: finds the majority element of a sequence
+# Time:  O(n)
+# Space: O(1) assume count(majority) > length / 2
+# If majority less than half, sort and count within O(n log n) time O(1) space
 
 # The majority numbers are united: they add to the count of their peers
 # Other numbers tries to subtract majority numbers' count to zero

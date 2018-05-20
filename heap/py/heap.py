@@ -41,3 +41,14 @@ def heappop(array):
     array[0], array[-1] = array[-1], array[0]
     perc_down(array, 0, len(array) - 1)
     return array.pop()
+
+# A binary tree problem can always be solved recursively
+def perc_down_recursive(array, i, size):
+    child = 2 * i + 1
+    if not child < size:
+        return
+    if child + 1 < size and array[child + 1] < array[child]:
+        child += 1
+    if array[i] > array[child]:
+        array[i], array[child] = array[child], array[i]
+        perc_down_recursive(array, child, size)

@@ -7,6 +7,8 @@
 #  r<=r
 #  Conclusion: 'left' always land at right of the boundary
 #              'right' at left of the boundary
+# Time:  O(log n)
+# Space: O(1)
 
 def binary_search(array, target):
     left, right = 0, len(array) - 1

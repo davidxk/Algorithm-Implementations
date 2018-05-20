@@ -1,3 +1,6 @@
+# Time:  O(n log n)
+# Space: O(1)
+
 def perc_down(array, i, size):
     x = array[i]
     child = None

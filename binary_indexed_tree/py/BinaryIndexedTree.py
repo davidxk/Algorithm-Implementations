@@ -31,3 +31,31 @@ class BinaryIndexedTree:
 
     def getRange(self, i, j):
         return self.getSum(j) - self.getSum(i - 1)
+
+"""
+# In 'start-middle-stop' convention
+class BinaryIndexedTree:
+    def __init__(self, array):
+        self.tree = [0] + array
+        for i in range(len(self.tree)):
+            sib = i + (i & (-i))
+            if sib < len(self.tree):
+                self.tree[sib] += self.tree[i]
+
+    def getSum(self, stop):
+        i = stop
+        summation = 0
+        while i > 0:
+            summation += self.tree[i]
+            i -= i & (-i)
+        return summation
+
+    def update(self, i, delta):
+        i += 1
+        while i < len(self.tree):
+            self.tree[i] += delta
+            i += i & (-i)
+
+    def getRange(self, start, stop):
+        return self.getSum(stop) - self.getSum(start)
+"""

@@ -1,3 +1,5 @@
+# Time:  O(n) text
+# Space: O(k) pattern
 
 def kmp_matcher(text, pattern):
     pi = compute_prefix_function(pattern)

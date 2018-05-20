@@ -1,3 +1,8 @@
+# Finds the kth largest element in the array by partially sorting the array
+# At the end, all k smallest elements are placed at array[:k + 1]
+# All elements greater than the kth largest element are placed at array[k + 1:]
+# Time:  O(n)
+
 def insertion_sort(array, left, right):
     for i in range(left + 1, right + 1):
         x = array[i]
@@ -40,3 +45,15 @@ def q_select(array, left, right, rank):
 def quick_select(array, rank):
     q_select(array, 0, len(array) - 1, rank - 1)
     return array[rank - 1]
+
+# Binary search on an array can usually be implemented with recursively
+def q_select_loop(array, left, right, rank):
+    while right - left > 10:
+        center = partition(array, left, right)
+        if center == rank:
+            return
+        elif center < rank:
+            left = center + 1
+        else:
+            right = center - 1
+    insertion_sort(array, left, right)

@@ -1,3 +1,5 @@
+# Time:  O(nk)
+# Space: O(1)
 
 def naive_matcher(text, pattern):
     for i in range(len(text) - len(pattern) + 1):

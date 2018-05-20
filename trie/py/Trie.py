@@ -33,7 +33,28 @@ class Trie:
         return True
 
     def delete(self, word):
+        stack = []
+        curr = self.root
+        for char in word:
+            if char not in curr.children:
+                raise KeyError(char)
+            stack.append((curr, char))
+            curr = curr.children[char]
+        if not curr.isLeaf:
+            raise KeyError(char)
+        # Explicitly use stack the way call stack is built
+        curr.isLeaf = False
+        child = curr
+        while stack:
+            curr, char = stack.pop()
+            if child.isLeaf or len(child.children) > 0:
+                break
+            curr.children.pop(char)
+            child = curr
+
+    def deleteRecursive(self, word):
         def helper(root, word, i):
+            # From subtree 'root' del 'word[i:]', return if root should be del
             if i == len(word) and root.isLeaf:
                 root.isLeaf = False
                 return len(root.children) == 0
