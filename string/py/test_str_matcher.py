@@ -20,7 +20,7 @@ def test_str_matcher(matcher):
     for i in range(100):
         text = gen_str(20000)
         patt = gen_str(10)
-        if matcher(text, patt) != text.find(patt):
+        if matcher(patt, text) != text.find(patt):
             return False
     time1 = time()
     print time1 - time0, matcher

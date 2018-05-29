@@ -13,8 +13,9 @@ def insertion_sort(array, left, right):
 
 def median3(array, left, right):
     center = (left + right) / 2
-    a, b, c = sorted([ array[left], array[center], array[right] ])
-    array[left], array[center], array[right] = a, c, b
+    temp = [array[left], array[center], array[right]]
+    insertion_sort(temp, 0, 2)
+    array[left], array[right], array[center] = temp
     return array[right]
 
 def partition(array, left, right):

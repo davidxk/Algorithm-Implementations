@@ -1,7 +1,7 @@
 class StackTraversal:
     # Output after stack push
     def preorderTraversal(self, root):
-        stack, curr = [], root
+        curr, stack = root, []
         result = []
         while curr or stack:
             while curr:
@@ -14,7 +14,7 @@ class StackTraversal:
 
     # Output after stack pop
     def inorderTraversal(self, root):
-        stack, curr = [], root
+        curr, stack = root, []
         result = []
         while curr or stack:
             while curr:
@@ -25,23 +25,9 @@ class StackTraversal:
             curr = curr.right
         return result
 
-    # Reverse left right, reverse result of preorder
-    def psudoPostorderTraversal(self, root):
-        stack, curr = [], root
-        result = []
-        while curr or stack:
-            while curr:
-                stack.append(curr)
-                result.append(curr.val)
-                curr = curr.right
-            curr = stack.pop()
-            curr = curr.left
-        result.reverse()
-        return result
-
     # Store call stack with context, output after second visit
     def postorderTraversal(self, root):
-        stack, curr = [], root
+        curr, stack = root, []
         result = []
         while curr or stack:
             while curr:
@@ -56,8 +42,33 @@ class StackTraversal:
                 stack.pop()
         return result
 
+    # DFS style only possible for preorder since the root cannot be revisited
+    def dfsPreorderTraversal(self, root):
+        stack = [root]
+        result = []
+        while stack:
+            node = stack.pop()
+            result.append(node)
+            stack.append(node.left)
+            stack.append(node.right)
+        return result
+
+    # Reverse left right, reverse result of preorder
+    def psudoPostorderTraversal(self, root):
+        curr, stack = root, []
+        result = []
+        while curr or stack:
+            while curr:
+                stack.append(curr)
+                result.append(curr.val)
+                curr = curr.right
+            curr = stack.pop()
+            curr = curr.left
+        result.reverse()
+        return result
+
 #   def stackVsRecursive(self, root):           def helper(root, result):
-#       stack, curr = [], root
+#       curr, stack = root, []
 #       result = []
 #       while curr or stack:
 #           while curr:                             if root:

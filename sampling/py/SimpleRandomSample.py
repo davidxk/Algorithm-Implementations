@@ -1,12 +1,17 @@
 import heapq
 import random
 
+# Simple Random Sample: get a sample of size k from input of size n
+
+# Simple Random Sample algorithm for fixed length input
 # Intuition: randomly taking 3 balls out of the box at once is equivalent to
 #            randomly taking 1 ball from the box without replacement 3 times
-# Simple Random Sample algorithm for fixed length input
-def selection_rejection(array, n, k):
+# Time:  O(n)
+# Space: O(k)
+def selection_rejection(array, k):
     """ Fan et al., 1962 """
     sample = []
+    n = len(array)
     for elem in array:
         if random.random() * n < k:
             sample.append(elem)
@@ -15,6 +20,9 @@ def selection_rejection(array, n, k):
     return sample
 
 # Simple Random Sample algorithm for stream input
+# Every incoming element has a k/n chance of being sampled
+# Time:  O(n)
+# Space: O(k)
 def reservoir_sampling(iterator, k):
     """ Vitter, 1985 """
     sample = []

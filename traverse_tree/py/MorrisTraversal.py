@@ -1,82 +1,102 @@
-# First pass by node, next pass by cur, third pass by node again
+# First pass by node, next pass by curr, third pass by node again
 
 from TreeNode import TreeNode
 
 class MorrisTraversal:
-    # Print before cur move to cur.left
+    # Print before curr move to curr.left
     def preorderTraversal(self, root):
-        cur = root
+        curr = root
         result = []
-        while cur:
-            if cur.left is None:
-                result.append(cur.val)
-                cur = cur.right
+        while curr:
+            if curr.left is None:
+                result.append(curr.val)
+                curr = curr.right
             else:
-                node = cur.left
-                while node.right and node.right != cur:
+                node = curr.left
+                while node.right and node.right != curr:
                     node = node.right
 
                 if node.right is None:
-                    node.right = cur
-                    result.append(cur.val)
-                    cur = cur.left
+                    node.right = curr
+                    result.append(curr.val)
+                    curr = curr.left
                 else:
                     node.right = None
-                    cur = cur.right
+                    curr = curr.right
         return result
 
-    # Print before cur move to cur.right
+    # Print before curr move to curr.right
     def inorderTraversal(self, root):
-        cur = root
+        curr = root
         result = []
-        while cur:
-            if cur.left is None:
-                result.append(cur.val)
-                cur = cur.right
+        while curr:
+            if curr.left is None:
+                result.append(curr.val)
+                curr = curr.right
             else:
-                node = cur.left
-                while node.right and node.right != cur:
+                node = curr.left
+                while node.right and node.right != curr:
                     node = node.right
 
                 if node.right is None:
-                    node.right = cur
-                    cur = cur.left
+                    node.right = curr
+                    curr = curr.left
                 else:
                     node.right = None
-                    result.append(cur.val)
-                    cur = cur.right
+                    result.append(curr.val)
+                    curr = curr.right
         return result
 
     # Print 
     def postorderTraversal(self, root):
         dummy = TreeNode(0)
         dummy.left = root
-        cur = dummy
+        curr = dummy
         result = []
-        while cur:
-            if cur.left is None:
-                cur = cur.right
+        while curr:
+            if curr.left is None:
+                curr = curr.right
             else:
-                node = cur.left
-                while node.right and node.right != cur:
+                node = curr.left
+                while node.right and node.right != curr:
                     node = node.right
 
                 if node.right is None:
-                    node.right = cur
-                    cur = cur.left
+                    node.right = curr
+                    curr = curr.left
                 else:
-                    result += self.traceBack(cur.left, node)
+                    result += self.traceBack(curr.left, node)
                     node.right = None
-                    cur = cur.right
+                    curr = curr.right
         return result
 
-    # Print path from node to cur.left
+    # Print path from node to curr.left
     def traceBack(self, frm, to):
-        cur = frm
+        curr = frm
         result = []
-        while cur != to:
-            result.append(cur.val)
-            cur = cur.right
+        while curr != to:
+            result.append(curr.val)
+            curr = curr.right
         result.append(to.val)
         result.reverse()
         return result
+
+#   def preorderTraversal(self, root):
+#       curr = root
+#       result = []
+#       while curr:
+#           if curr.left is not None:      # Traverse left subtree of curr
+#               last = curr.left           # Find the last node in left subtree
+#               while last.right and last.right != curr:
+#                   last = last.right      # before moving curr
+#               if last.right is None:     # (LNLS: last node in left subtree)
+#                   last.right = curr      # Make curr its right child
+#                   result.append(curr.val)# So that curr is the last node LNLS
+#                   curr = curr.left       # And move curr to the left child
+#               else:                      # So upon finishing the left subtree
+#                   last.right = None      # curr is again at the root
+#                   curr = curr.right      # And find itself the last node LNLS
+#           else:                          # So unmake root LNLS and move right
+#               result.append(curr.val)    # In the case left subtree not exist
+#               curr = curr.right          # Simply move to the right child
+#       return result

@@ -1,3 +1,4 @@
+# All permuations of an array A(n, n)
 # Give a chance to each element to be at the front, and the rest is recurrsion
 """
 [1  (2 3 4)]
@@ -24,21 +25,28 @@ def permutations(nums):
 """
 from collections import Counter
 def permutationsWithDup(nums):
-    cnt = Counter(nums)
-    def helper(nums, buf, result):
-        if len(buf) == len(nums):
-            result.append(list(buf))
+    def helper(nums, start, result):
+        if start == len(nums):
+            result.append(nums)
             return result
-
-        for num in cnt.keys():
-            cnt[num] -= 1
-            if cnt[num] == 0:
-                del cnt[num]
-
-            buf.append(num)
-            helper(nums, buf, result)
-            buf.pop()
-
-            cnt[num] += 1
+        for i in range(start, len(nums)):
+            if i == start or nums[i] != nums[start]:
+                nums[i], nums[start] = nums[start], nums[i]
+                helper(list(nums), start + 1, result)
+                #nums[i], nums[start] = nums[start], nums[i]
         return result
-    return helper(nums, [], [])
+    return helper(nums, 0, [])
+
+"""
+[000]
+[000, 100]
+[000, 100, 010, 110]
+[000, 100, 010, 110, 001, 101, 0l1, 111]
+"""
+def bitPermutations(bits):
+    result = [bits]
+    for i in range(len(bits)):
+        for array in result:
+            copy = list(array)
+            copy[i] = not copy[i]
+            result.append(copy)

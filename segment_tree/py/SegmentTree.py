@@ -6,8 +6,10 @@ from math import log
 
 class RMQSegmentTree:
     def __init__(self, array):
+        #if len(array) < 2:
+            #raise IndexError("Cannot build segment tree for len(array) < 2")
         self.n = len(array)
-        x = int(log(len(array), 2)) + 1
+        x = int(log(len(array) - 1, 2)) + 1
         size = 2 ** x * 2
         self.tree = [0] * size
         self.build(0, array, 0, self.n - 1)

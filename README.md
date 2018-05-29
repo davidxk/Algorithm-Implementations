@@ -8,6 +8,7 @@ My implementations of classic algorithms and data structures in Python 2.7, C, C
 
 ## Data Structures
 * Vector
+* Hash Set
 * Binary Search Tree
 * Heap
 * Disjoint Set (Union-Find)
@@ -25,11 +26,12 @@ My implementations of classic algorithms and data structures in Python 2.7, C, C
 | tree traversal      | recursive, stack, Morris                          |
 | shortest path | bfs, Dijkstra's, Bellman–Ford, Floyd–Warshall, Johnson's |
 | graph search        | bidirectional, depth limited, iterative deepening |
+| recursion           | permutations, combinations, subsets               |
 | string              | naive string matcher, KMP string matcher          |
 | math                | gcd                                               |
 | shuffle             | Fisher–Yates                                      |
 | dutch national flag | three way partition                               |
-<!--| majority            | majority vote                                     |-->
-<!--| recursion           | permutations, subsets                             |-->
-<!--| sampling            | selection-rejection, reservoir sampling           |-->
 
+
+<!--| majority            | majority vote                                     |-->
+<!--| sampling            | selection-rejection, reservoir sampling           |-->

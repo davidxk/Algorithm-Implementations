@@ -1,9 +1,13 @@
+# All 2^n subsets of an array sum(C(i, n))
 # Sub-problem: subsets of nums[start:]
 # Solution to the subproblem is a part of the solution to the original problem
 """
-This recurssion is essentially multiple for loops. e.g. C(3, 5) is equivalent to
+This recurssion is essentially multiple for loops. e.g. 2^3 is equivalent to
+result.append([])
 for i in range(len(nums)):
+    result.append([nums[i]])
     for j in range(i + 1, len(nums)):
+        result.append([nums[i], nums[j]])
         for j in range(j + 1, len(nums)):
             result.append([nums[i], nums[j], nums[k]])
 """
@@ -19,9 +23,11 @@ def subsets(nums):
 
 # Some solution to the subproblem are duplicates and should be excluded
 """
-With duplicates, C(2, 5) is equivalent to
+With duplicates, 2^2 subsets is equivalent to
+result.append([])
 for i in range(len(nums)):
     if i == 0 or nums[i] != nums[i - 1]:
+        result.append([nums[i]])
         for j in range(i + 1, len(nums)):
             if j == i + 1 or nums[j] != nums[j - 1]:
                 result.append([nums[i], nums[j]])
@@ -65,17 +71,3 @@ def subsetsBitManipulation(nums):
             if (k >> i & 1):
                 result[k].append(nums[i])
     return result
-
-"""
-[000]
-[000, 100]
-[000, 100, 010, 110]
-[000, 100, 010, 110, 001, 101, 0l1, 111]
-"""
-def bitPermutations(bits):
-    result = [bits]
-    for i in range(len(bits)):
-        for array in result:
-            copy = list(array)
-            copy[i] = not copy[i]
-            result.append(copy)
