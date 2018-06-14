@@ -1,5 +1,5 @@
 # Algorithm Implementations
-My implementations of classic algorithms and data structures in Python 2.7, C, C++11 and Java. 
+My implementations of classic algorithms and data structures in Python, C, C++ and Java. 
 
 ## Features
 * Tests included
@@ -19,7 +19,7 @@ My implementations of classic algorithms and data structures in Python 2.7, C, C
 ## Algorithms
 | Category            | Algorithms                                        |
 | ----------          | ------------                                      |
-| search              | binary search                                     |
+| search              | binary search, bisect                             |
 | sorting   | bubble sort, selection sort, merge sort, heap sort, quick sort |
 | selection           | quick select, BFPRT select                        |
 | linked list | find middle, reverse linked list, cycle detection, merge sort |
@@ -30,8 +30,8 @@ My implementations of classic algorithms and data structures in Python 2.7, C, C
 | string              | naive string matcher, KMP string matcher          |
 | math                | gcd                                               |
 | shuffle             | Fisher–Yates                                      |
+| majority            | Boyer-Moore majority vote                         |
 | dutch national flag | three way partition                               |
 
 
-<!--| majority            | majority vote                                     |-->
-<!--| sampling            | selection-rejection, reservoir sampling           |-->
+<!--| sampling   | selection-rejection, reservoir sampling, weighted sampling |-->

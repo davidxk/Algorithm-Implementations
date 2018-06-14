@@ -1,7 +1,8 @@
 """0, 0, 0, 1, 1, 1, 2, 2, 2"""
 """        ^                """
-# Equivalent to ceiling()
+# Equivalent to ceiling(array, target), target <= ceiling
 # Insert 1 or 0.5 in above example
+# Thus, lower = ceiling - 1
 def bisect_left(array, target):
     left, right = 0, len(array) - 1
     while left <= right:
@@ -16,8 +17,9 @@ def bisect_left(array, target):
 
 """0, 0, 0, 1, 1, 1, 2, 2, 2"""
 """                 $       """
-# Equivalent to upper_bound()
+# Equivalent to higher(array, target), target < higher
 # Insert 1 or 1.5 in above example
+# Thus, floor = higher - 1
 def bisect(array, target):
     left, right = 0, len(array) - 1
     while left <= right:

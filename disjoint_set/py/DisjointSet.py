@@ -23,7 +23,8 @@ class DisjointSet:
             self.parent[root2] = root1
             self.height.pop(root2)
         else:
-            if self.parent[root1] == self.parent[root2]:
+            # When same height, link root1 to root2
+            if self.height[root1] == self.height[root2]:
                 self.height[root2] += 1
             self.parent[root1] = root2
             self.height.pop(root1)
@@ -39,7 +40,7 @@ class DisjointSet:
             mapping[parent[child]].append(child)
         return mapping.values()
 
-    def count(self):
+    def __len__(self):
         return len(self.height)
     '''
 
@@ -63,18 +64,19 @@ class DisjointSetLinkBySize:
             self.link(root1, root2)
 
     def link(self, root1, root2):
-        if self.size[root1] < self.size[root2]:
+        if self.size[root1] > self.size[root2]:
+            # When same size, link root1 to root2
             self.link(root2, root1)
         else:
-            self.size[root1] += self.size[root2]
-            self.size.pop(root2)
-            self.parent[root2] = root1
+            self.size[root2] += self.size[root1]
+            self.size.pop(root1)
+            self.parent[root1] = root2
 
     '''
     def elements(self):
         return self.parent.keys()
 
-    def count(self):
+    def __len__(self):
         return len(self.size)
 
     from collections import defaultdict

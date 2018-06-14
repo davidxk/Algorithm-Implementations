@@ -13,6 +13,7 @@ def isTail(elem):
     return elem == 2
 
 def three_way_partition(array, is_head = isHead, is_tail = isTail):
+    """ Dijkstra, 1976 """
     head, tail = 0, len(array) - 1
     i = 0
     while i <= tail:

@@ -1,4 +1,4 @@
-#include "binary_search.h"
+#include "binary_search.c"
 
 #include <assert.h>
 #include <stdio.h>
@@ -67,11 +67,11 @@ void test_binary_search()
 	}
 }
 
-void test_lower_bound()
+void test_lower()
 {
 	const int SIZE = 1000;
 	int array[SIZE];
-	int i, target, j, lower;
+	int i, target, j, expect;
 	for(i = 0; i < SIZE; i++)
 		array[i] = rand();
 	sort(array, SIZE);
@@ -81,14 +81,14 @@ void test_lower_bound()
 		for(j = 0; j < SIZE; j++)
 			if(array[j] >= target)
 			{
-				lower = j - 1;
+				expect = j - 1;
 				break;
 			}
-		assertEqual(lower_bound(array, SIZE, target), lower);
+		assertEqual(lower(array, SIZE, target), expect);
 	}
 }
 
-void test_upper_bound()
+void test_higher()
 {
 	const int SIZE = 1000;
 	int array[SIZE];
@@ -105,7 +105,7 @@ void test_upper_bound()
 				upper = j + 1;
 				break;
 			}
-		assertEqual(upper_bound(array, SIZE, target), upper);
+		assertEqual(higher(array, SIZE, target), upper);
 	}
 }
 
@@ -113,7 +113,7 @@ int main()
 {
 	srand(time(0));
 	test_binary_search();
-	test_upper_bound();
-	test_lower_bound();
+	test_higher();
+	test_lower();
 	return 0;
 }

@@ -27,7 +27,7 @@ public class TestBinarySearch
 				assert BinarySearch.search(array, target) == target;
 		}
 	}
-	public static void testLowerBound()
+	public static void testLower()
 	{
 		int[] array = setUp(size);
 		Arrays.sort(array);
@@ -41,10 +41,10 @@ public class TestBinarySearch
 					lower = j - 1;
 					break;
 				}
-			assert BinarySearch.lowerBound(array, target) == lower;
+			assert BinarySearch.lower(array, target) == lower;
 		}
 	}
-	public static void testUpperBound()
+	public static void testHigher()
 	{
 		int[] array = setUp(size);
 		Arrays.sort(array);
@@ -58,7 +58,7 @@ public class TestBinarySearch
 					upper = j + 1;
 					break;
 				}
-			assert BinarySearch.upperBound(array, target) == upper;
+			assert BinarySearch.higher(array, target) == upper;
 		}
 	}
 	public static void main(String[] args)

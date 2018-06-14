@@ -42,6 +42,15 @@ class TestTrie(unittest.TestCase):
             self.assertFalse( self.trie.search(word) )
             for word in self.case:
                 self.assertTrue( self.trie.search(word) )
+    
+    def testSearchPrefix(self):
+        cases = ["a", "aa", "aam", "ab", "A", "Aa", "Aar", "Aba", "b", "Bb"]
+        for word in set(self.case):
+            self.trie.insert(word)
+        for prefix in cases:
+            result = self.trie.searchPrefix(prefix)
+            expect = filter(lambda word: word.startswith(prefix), self.case)
+            self.assertEqual(set(result), set(expect))
 
 if __name__ == "__main__":
     unittest.main()

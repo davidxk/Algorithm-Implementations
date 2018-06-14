@@ -9,6 +9,7 @@
 | BFS | Single-source shortest paths | graph | unweighted | adjacency list | $O(V + E)$ |
 | Dijkstra's | Single-source shortest paths | graph | weighted+ | adjacency list | $O(E \log V)$ $O(E + V \log V)$ |
 | Bellman-Ford | Single-source shortest paths | graph | weighted | set of $V$ & $E$ | $O(VE)$ |
+| SPFA | Single-source shortest paths | graph | weighted | adjacency list | $O(E)$ |
 | Floyd-Warshall | All-pairs shortest paths | graph | weighted | set of $V$ & $E$ | $O(V^3)$ |
 | Johnson's | All-pairs shortest paths | graph | weighted | adjacency list | $O(V^2\log V + VE)$ |
 
