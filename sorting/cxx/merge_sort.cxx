@@ -1,16 +1,15 @@
 #include <vector>
-using namespace std;
 
-void merge_sort(vector<int>& array);
-void m_sort(vector<int>& array, int start, int end);
-void merge(vector<int>& array, int start, int middle, int end);
+void merge_sort(std::vector<int>& array);
+void m_sort(std::vector<int>& array, int start, int end);
+void merge(std::vector<int>& array, int start, int middle, int end);
 
-void merge_sort(vector<int>& array)
+void merge_sort(std::vector<int>& array)
 {
 	m_sort(array, 0, array.size());
 }
 
-void m_sort(vector<int>& array, int start, int end)
+void m_sort(std::vector<int>& array, int start, int end)
 {
 	if(end - start > 1)
 	{
@@ -21,9 +20,9 @@ void m_sort(vector<int>& array, int start, int end)
 	}
 }
 
-void merge(vector<int>& array, int start, int middle, int end)
+void merge(std::vector<int>& array, int start, int middle, int end)
 {
-	static vector<int> tmp(array.size());
+	static std::vector<int> tmp(array.size());
 	int i = start, j = middle, k = 0;
 	while(i < middle && j < end)
 	{

@@ -1,8 +1,7 @@
 #include <algorithm>
 #include <vector>
-using namespace std;
 
-void bubble_sort(vector<int>& array)
+void bubble_sort(std::vector<int>& array)
 {
 	bool swapped = false;
 	do
@@ -11,7 +10,7 @@ void bubble_sort(vector<int>& array)
 		for(int i = 1; i < array.size(); i++)
 			if(array[i - 1] > array[i])
 			{
-				swap(array[i - 1], array[i]);
+				std::swap(array[i - 1], array[i]);
 				swapped = true;
 			}
 	} while(swapped);

@@ -3,13 +3,17 @@
 
 void selection_sort(int* a, const int n)
 {
-	int i, j;
+	int i, j, minIdx;
+	int tmp;
 	for(i = 0; i < n; i++)
+	{
+		minIdx = i;
 		for(j = i + 1; j < n; j ++)
-			if(a[i] > a[j])
-			{
-				int tmp = a[i];
-				a[i] = a[j];
-				a[j] = tmp;
-			}
+			if(a[j] < a[minIdx])
+				minIdx = j;
+
+		tmp = a[i];
+		a[i] = a[minIdx];
+		a[minIdx] = tmp;
+	}
 }

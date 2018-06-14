@@ -1,9 +1,7 @@
 #include "Trie.h"
-
 #include <iostream>
-using namespace std;
 
-void Trie::insert(const string& word)
+void Trie::insert(const std::string& word)
 {
 	TrieNode* curr = root;
 	for(int i = 0; i < word.length(); i++)
@@ -15,7 +13,7 @@ void Trie::insert(const string& word)
 	curr->isLeaf = true;
 }
 
-bool Trie::search(const string& word)
+bool Trie::search(const std::string& word)
 {
 	TrieNode* curr = root;
 	for(int i = 0; i < word.size(); i++)
@@ -27,7 +25,7 @@ bool Trie::search(const string& word)
 	return curr->isLeaf == true;
 }
 
-bool Trie::startWith(const string& prefix)
+bool Trie::startWith(const std::string& prefix)
 {
 	TrieNode* curr = root;
 	for(int i = 0; i < prefix.size(); i++)

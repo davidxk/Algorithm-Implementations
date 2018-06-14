@@ -1,28 +1,27 @@
 #include "TraversalMethods.h"
 #include "TreeNode.h"
 #include <vector>
-using namespace std;
 
 class RecursiveTraversal: public TraversalMethods
 {
 public:
-	vector<int> preorderTraversal(TreeNode* root);
-	vector<int> inorderTraversal(TreeNode* root);
-	vector<int> postorderTraversal(TreeNode* root);
+	std::vector<int> preorderTraversal(TreeNode* root);
+	std::vector<int> inorderTraversal(TreeNode* root);
+	std::vector<int> postorderTraversal(TreeNode* root);
 private:
-	void preorder_helper(TreeNode* root, vector<int>& result);
-	void inorder_helper(TreeNode* root, vector<int>& result);
-	void postorder_helper(TreeNode* root, vector<int>& result);
+	void preorder_helper(TreeNode* root, std::vector<int>& result);
+	void inorder_helper(TreeNode* root, std::vector<int>& result);
+	void postorder_helper(TreeNode* root, std::vector<int>& result);
 };
 
-vector<int> RecursiveTraversal::preorderTraversal(TreeNode* root)
+std::vector<int> RecursiveTraversal::preorderTraversal(TreeNode* root)
 {
-	vector<int> result;
+	std::vector<int> result;
 	preorder_helper(root, result);
 	return result;
 }
 
-void RecursiveTraversal::preorder_helper(TreeNode* root, vector<int>& result)
+void RecursiveTraversal::preorder_helper(TreeNode* root, std::vector<int>& result)
 {
 	if(root != NULL)
 	{
@@ -32,14 +31,14 @@ void RecursiveTraversal::preorder_helper(TreeNode* root, vector<int>& result)
 	}
 }
 
-vector<int> RecursiveTraversal::inorderTraversal(TreeNode* root)
+std::vector<int> RecursiveTraversal::inorderTraversal(TreeNode* root)
 {
-	vector<int> result;
+	std::vector<int> result;
 	inorder_helper(root, result);
 	return result;
 }
 
-void RecursiveTraversal::inorder_helper(TreeNode* root, vector<int>& result)
+void RecursiveTraversal::inorder_helper(TreeNode* root, std::vector<int>& result)
 {
 	if(root != NULL)
 	{
@@ -49,14 +48,14 @@ void RecursiveTraversal::inorder_helper(TreeNode* root, vector<int>& result)
 	}
 }
 
-vector<int> RecursiveTraversal::postorderTraversal(TreeNode* root)
+std::vector<int> RecursiveTraversal::postorderTraversal(TreeNode* root)
 {
-	vector<int> result;
+	std::vector<int> result;
 	postorder_helper(root, result);
 	return result;
 }
 
-void RecursiveTraversal::postorder_helper(TreeNode* root, vector<int>& result)
+void RecursiveTraversal::postorder_helper(TreeNode* root, std::vector<int>& result)
 {
 	if(root != NULL)
 	{

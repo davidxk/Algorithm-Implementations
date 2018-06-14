@@ -1,9 +1,8 @@
 #include <cstdlib>
 #include <iostream>
 #include <vector>
-using namespace std;
 
-void insertion_sort(vector<int>& array)
+void insertion_sort(std::vector<int>& array)
 {
 	int j;
 	for(int i = 0; i < array.size(); i++)

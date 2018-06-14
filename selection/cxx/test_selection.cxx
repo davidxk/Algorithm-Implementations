@@ -1,15 +1,15 @@
+#include "quick_select.cxx"
+#include "bfprt_select.cxx"
+
 #include <algorithm>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
 #include <vector>
-using namespace std;
-#include "quick_select.cxx"
-#include "bfprt_select.cxx"
 
-void merge(vector<int>& array, int start, int center, int end)
+void merge(std::vector<int>& array, int start, int center, int end)
 {
-	static vector<int> tmp(array.size());
+	static std::vector<int> tmp(array.size());
 	int i = start, j = center, k = 0;
 	while(i < center && j < end)
 		if(array[i] < array[j])
@@ -24,7 +24,7 @@ void merge(vector<int>& array, int start, int center, int end)
 		array[start + i] = tmp[i];
 }
 
-void m_sort(vector<int>& array, int start, int end)
+void m_sort(std::vector<int>& array, int start, int end)
 {
 	if(end - start > 1)
 	{
@@ -35,21 +35,21 @@ void m_sort(vector<int>& array, int start, int end)
 	}
 }
 
-void merge_sort(vector<int>& array)
+void merge_sort(std::vector<int>& array)
 {
 	return m_sort(array, 0, array.size());
 }
 
-bool check_select(vector<int>& array, int rank, int retval)
+bool check_select(std::vector<int>& array, int rank, int retval)
 {
 	merge_sort(array);
 	return array[rank - 1] == retval;
 }
 
-bool test_select(int (*select)(vector<int>&, int))
+bool test_select(int (*select)(std::vector<int>&, int))
 {
 	int volume = 5000;
-	vector<int> array(volume);
+	std::vector<int> array(volume);
 	int rank, retval;
 	for(int i = 0; i < 1000; i++)
 	{
@@ -66,13 +66,13 @@ bool test_select(int (*select)(vector<int>&, int))
 int main()
 {
 	srand(time(NULL));
-	typedef int (*select)(vector<int>&, int);
+	typedef int (*select)(std::vector<int>&, int);
 	select funcs[] = {
 		quick_select, bfprt_select
 	};
 	for(select func: funcs)
 		if(!test_select(func))
-			cout<<"WA: "<<func<<endl;
+			std::cout<<"WA: "<<func<<std::endl;
 		else
-			cout<<func<<" done"<<endl;
+			std::cout<<func<<" done"<<std::endl;
 }

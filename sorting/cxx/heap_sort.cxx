@@ -1,8 +1,7 @@
 #include <algorithm>
 #include <vector>
-using namespace std;
 
-void perc_down(vector<int>& array, int i, int size)
+void perc_down(std::vector<int>& array, int i, int size)
 {
 	int child, x;
 	for(x = array[i]; 2*i+1 < array.size(); i = child)
@@ -17,13 +16,13 @@ void perc_down(vector<int>& array, int i, int size)
 	}
 }
 
-void heap_sort(vector<int>& array)
+void heap_sort(std::vector<int>& array)
 {
 	for(int i = array.size()/2; i >=0; i--)
 		perc_down(array, i, array.size());
 	for(int i = array.size() - 1; i > 0; i--)
 	{
-		swap(array[0], array[i]);
+		std::swap(array[0], array[i]);
 		perc_down(array, 0, i);
 	}
 }

@@ -1,21 +1,20 @@
 #include <algorithm>
 #include <cstdlib>
 #include <vector>
-using namespace std;
 
-void insertion_sort(vector<int>& array, int left, int right);
-int median3(vector<int>& array, int left, int right);
-int partition(vector<int>& array, int left, int right);
-void q_select(vector<int>& array, int left, int right, int rank);
-int quick_select(vector<int>& array, int rank);
+void insertion_sort(std::vector<int>& array, int left, int right);
+int median3(std::vector<int>& array, int left, int right);
+int partition(std::vector<int>& array, int left, int right);
+void q_select(std::vector<int>& array, int left, int right, int rank);
+int quick_select(std::vector<int>& array, int rank);
 
-int quick_select(vector<int>& array, int rank)
+int quick_select(std::vector<int>& array, int rank)
 {
 	q_select(array, 0, array.size() - 1, rank - 1);
 	return array[rank - 1];
 }
 
-void q_select(vector<int>& array, int left, int right, int rank)
+void q_select(std::vector<int>& array, int left, int right, int rank)
 {
 	if(right - left < 10)
 	{
@@ -29,7 +28,7 @@ void q_select(vector<int>& array, int left, int right, int rank)
 		return q_select(array, center + 1, right, rank);
 }
 
-void insertion_sort(vector<int>& array, int left, int right)
+void insertion_sort(std::vector<int>& array, int left, int right)
 {
 	int j, x;
 	for(int i = left + 1; i < right + 1; i++)
@@ -41,10 +40,10 @@ void insertion_sort(vector<int>& array, int left, int right)
 	}
 }
 
-int median3(vector<int>& array, int left, int right)
+int median3(std::vector<int>& array, int left, int right)
 {
 	int center = (left + right) / 2;
-	vector<int> tmp = { array[left], array[center], array[right] }; 
+	std::vector<int> tmp = { array[left], array[center], array[right] }; 
 	insertion_sort(tmp, 0, 2);
 	array[left] = tmp[0];
 	array[right] = tmp[2];
@@ -52,7 +51,7 @@ int median3(vector<int>& array, int left, int right)
 	return array[right];
 }
 
-int partition(vector<int>& array, int left, int right)
+int partition(std::vector<int>& array, int left, int right)
 {
 	int pivot = median3(array, left, right);
 	int i = left + 1, j = right - 1;
@@ -62,9 +61,9 @@ int partition(vector<int>& array, int left, int right)
 		while(pivot < array[j]) j--;
 		if(i >= j)
 		{
-			swap(array[i], array[right]);
+			std::swap(array[i], array[right]);
 			return i;
 		}
-		swap(array[i++], array[j--]);
+		std::swap(array[i++], array[j--]);
 	}
 }

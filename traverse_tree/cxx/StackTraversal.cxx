@@ -3,20 +3,19 @@
 #include <vector>
 #include "TraversalMethods.h"
 #include "TreeNode.h"
-using namespace std;
 
 class StackTraversal: public TraversalMethods
 {
 public:
-	vector<int> preorderTraversal(TreeNode* root);
-	vector<int> inorderTraversal(TreeNode* root);
-	vector<int> postorderTraversal(TreeNode* root);
+	std::vector<int> preorderTraversal(TreeNode* root);
+	std::vector<int> inorderTraversal(TreeNode* root);
+	std::vector<int> postorderTraversal(TreeNode* root);
 };
 
-vector<int> StackTraversal::preorderTraversal(TreeNode* root)
+std::vector<int> StackTraversal::preorderTraversal(TreeNode* root)
 {
-	vector<int> result;
-	stack<TreeNode*> fringe;
+	std::vector<int> result;
+	std::stack<TreeNode*> fringe;
 	TreeNode* curr = root;
 	while(curr or not fringe.empty())
 	{
@@ -33,11 +32,11 @@ vector<int> StackTraversal::preorderTraversal(TreeNode* root)
 	return result;
 }
 
-vector<int> StackTraversal::inorderTraversal(TreeNode* root)
+std::vector<int> StackTraversal::inorderTraversal(TreeNode* root)
 {
-	vector<int> result;
+	std::vector<int> result;
 	TreeNode* curr = root;
-	stack<TreeNode*> fringe;
+	std::stack<TreeNode*> fringe;
 	while(curr or not fringe.empty())
 	{
 		while(curr)
@@ -53,11 +52,11 @@ vector<int> StackTraversal::inorderTraversal(TreeNode* root)
 	return result;
 }
 
-vector<int> StackTraversal::postorderTraversal(TreeNode* root)
+std::vector<int> StackTraversal::postorderTraversal(TreeNode* root)
 {
-	vector<int> result;
+	std::vector<int> result;
 	TreeNode* curr = root;
-	stack<pair<TreeNode*, bool> > fringe;
+	std::stack<std::pair<TreeNode*, bool> > fringe;
 	while(curr or not fringe.empty())
 	{
 		while(curr)
