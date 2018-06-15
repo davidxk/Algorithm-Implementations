@@ -27,13 +27,11 @@ My implementations of classic algorithms and data structures in Python, C, C++ a
 | minimal spanning tree | Prim's, Kruskal's                               |
 | shortest path | bfs, Dijkstra's, Bellman–Ford, SPFA, Floyd–Warshall, Johnson's |
 | graph search        | bidirectional, depth limited, iterative deepening |
+| topological sort    | Kahn's, DFS-based, Viterbi shortest path          |
 | recursion           | permutations, combinations, subsets               |
 | string              | naive string matcher, KMP string matcher          |
 | math                | gcd                                               |
-| shuffle             | Fisher–Yates                                      |
 | majority            | Boyer–Moore majority vote                         |
+| sampling   | selection-rejection, reservoir sampling, weighted sampling |
+| shuffle             | Fisher–Yates                                      |
 | dutch national flag | three way partition                               |
-
-
-<!--| sampling   | selection-rejection, reservoir sampling, weighted sampling |-->
-<!--| DP | maximum sub-array, knapsack, sequence alignment, traveling salesman |-->
