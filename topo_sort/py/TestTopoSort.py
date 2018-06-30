@@ -67,4 +67,5 @@ class TestTopoSort(unittest.TestCase):
             self.assertEqual(algo(edges), [])
 
 if __name__ == "__main__":
+    print "This could take up to 5 seconds"
     unittest.main()

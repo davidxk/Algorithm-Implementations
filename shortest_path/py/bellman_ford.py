@@ -2,9 +2,10 @@ from collections import defaultdict
 
 # Tested
 def bellman_ford(nodes, edges, source):
-    dist = defaultdict(lambda: float("inf"))
     #dist = [float("inf")] * len(nodes)
-    prev = [None] * len(nodes)
+    #prev = [None] * len(nodes)
+    dist = defaultdict(lambda: float("inf"))
+    prev = {source: None}
     dist[source] = 0
     
     for i in range(1, len(nodes)):

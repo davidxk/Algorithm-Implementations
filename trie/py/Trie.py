@@ -8,7 +8,7 @@ class Trie:
     def __init__(self):
         self.root = TrieNode("root")
 
-    def insert(self, word):
+    def add(self, word):
         curr = self.root
         for char in word:
             if char not in curr.children:
@@ -16,7 +16,7 @@ class Trie:
             curr = curr.children[char]
         curr.isLeaf = True
 
-    def search(self, word):
+    def __contains__(self, word):
         curr = self.root
         for char in word:
             if char not in curr.children:
@@ -40,7 +40,7 @@ class Trie:
             curr = curr.children[char]
         return helper(curr, list(prefix), [])
 
-    def startsWith(self, prefix):
+    def containsPrefix(self, prefix):
         curr = self.root
         for char in prefix:
             if char not in curr.children:
@@ -48,7 +48,7 @@ class Trie:
             curr = curr.children[char]
         return True
 
-    def delete(self, word):
+    def remove(self, word):
         stack = []
         curr = self.root
         for char in word:
@@ -68,7 +68,7 @@ class Trie:
             curr.children.pop(char)
             child = curr
 
-    def deleteRecursive(self, word):
+    def removeRecursive(self, word):
         def helper(root, word, i):
             # From subtree 'root' del 'word[i:]', return if root should be del
             if i == len(word) and root.isLeaf:

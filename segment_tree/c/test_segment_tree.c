@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "sum_segment_tree.h"
+#include "rsq_segment_tree.h"
 
 void test_query()
 {
@@ -12,7 +12,7 @@ void test_query()
 	int sum;
 	for(i = 0; i < size; i++)
 		array[i] = rand() % size;
-	SumSegmentTree* st = sum_segment_tree_init(array, size);
+	RSQSegmentTree* st = rsq_segment_tree_init(array, size);
 	for(i = 0; i < size; i++)
 	{
 		left = rand() % (size / 2);
@@ -33,7 +33,7 @@ void test_update()
 	int sum;
 	for(i = 0; i < size; i++)
 		array[i] = rand() % size;
-	SumSegmentTree* st = sum_segment_tree_init(array, size);
+	RSQSegmentTree* st = rsq_segment_tree_init(array, size);
 
 	int index = rand() % size, delta = -rand() % 50;
 	array[index] += delta;

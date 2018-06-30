@@ -1,7 +1,7 @@
 from collections import Counter
 from collections import defaultdict
 
-# Verified 
+# Verified and tested
 def topo_sort(edges):
     """ Kahn, 1962 """
     adjList = defaultdict(list)
@@ -44,7 +44,7 @@ def viterbi_shortest_path(edges):
                 front.append(child)
     return dist
 
-# Verified 
+# Reverse the edges in the adjacency list
 def dfs_based(edges):
     WHITE, GREY, BLACK = 0, 1, 2
     color = defaultdict(lambda: WHITE)
@@ -55,7 +55,7 @@ def dfs_based(edges):
             return []
         color[node] = GREY
         for child in adjList[node]:
-            if color[child] is not BLACK: # Verify this line
+            if color[child] is not BLACK:
                 if not visit(child):
                     return []
         color[node] = BLACK
@@ -63,14 +63,13 @@ def dfs_based(edges):
         return result
 
     adjList = defaultdict(list)
-    for u, v in edges:
+    for v, u in edges:
         adjList[u].append(v)
         adjList[v] = adjList[v]
     for node in adjList:
         if node not in color:
             if not visit(node):
                 return []
-    result.reverse()
     return result
 
 def dp_shortest_path(edges):
@@ -78,8 +77,7 @@ def dp_shortest_path(edges):
         if node in dist:
             return dist[node]
         for child, weight in adjList[node]:
-            if visit(child) + weight < dist[node]:
-                dist[node] = visit(child) + weight
+            dist[node] = min(visit(child) + weight, dist[node])
         if dist[node] == float("inf"):
             dist[node] = 0
         return dist[node]

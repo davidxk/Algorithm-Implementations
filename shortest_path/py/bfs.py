@@ -8,7 +8,7 @@ def bfs(adjList, source):
     while front:
         node = front.popleft()
         for child in adjList[node]:
-            if child not in prev:
+            if child not in dist:
                 front.append(child)
                 dist[child] = dist[node] + 1
                 prev[child] = node
