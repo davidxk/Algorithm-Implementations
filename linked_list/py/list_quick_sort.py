@@ -1,4 +1,4 @@
-from ListNode import ListNode
+from LinkedList import ListNode
 
 def median3(head):
     if head.next and head.next.next:

@@ -1,11 +1,12 @@
 from binary_search import binary_search, lower, higher, equal_range
+import bisect
 import unittest
 import random
 
 class TestBinarySearch(unittest.TestCase):
-    def setUp(self, scale = 100):
+    def setUp(self):
         self.times = 100
-        self.size = int(3000 * scale)
+        self.size = 30000
         self.array = [random.randrange(self.size) for i in range(self.size)]
         self.array.sort()
 
@@ -13,37 +14,25 @@ class TestBinarySearch(unittest.TestCase):
         for i in range(self.times):
             target = random.randrange(int(self.size * 1.10))
             retval = equal_range(self.array, target) 
-            if target not in self.array:
-                if retval != (-1, -1):
-                    return False
-                else:
-                    continue
-            left = lower(self.array, target) + 1
-            right = higher(self.array, target) - 1
+            left = bisect.bisect_left(self.array, target)
+            if 0 <= left < len(self.array) and self.array[left] == target:
+                right = bisect.bisect(self.array, target) - 1
+            else:
+                left = right = -1
             self.assertEqual(retval, (left, right))
 
     def test_higher(self):
         for i in range(self.times):
             target = random.randrange(int(self.size * 1.10))
             retval = higher(self.array, target) 
-            for i, num in enumerate(self.array):
-                if num > target:
-                    expect = i
-                    break
-            else:
-                expect = len(self.array)
+            expect = bisect.bisect(self.array, target)
             self.assertEqual(retval, expect)
 
     def test_lower(self):
         for i in range(self.times):
             target = random.randrange(int(self.size * 1.10))
             retval = lower(self.array, target) 
-            for i, num in enumerate(self.array):
-                if num >= target:
-                    expect = i - 1
-                    break
-            else:
-                expect = len(self.array) - 1
+            expect = bisect.bisect_left(self.array, target) - 1
             self.assertEqual(retval, expect)
 
     def test_binary_search(self):
@@ -51,13 +40,11 @@ class TestBinarySearch(unittest.TestCase):
         for i in range(self.times):
             target = random.randrange(int(self.size * 1.10))
             retval = binary_search(self.array, target) 
-            try:
-                expect = self.array.index(target)
-            except ValueError:
+            if 0 <= retval < len(self.array):
+                self.assertEqual(self.array[retval], target)
+            else:
                 self.assertEqual(retval, -1)
-                continue
-            self.assertEqual(retval, expect)
+                self.assertTrue(target < self.array[0] or self.array[-1] < target)
 
 if __name__ == '__main__':
-    print "These tests could take up to 10 secends to finish"
     unittest.main()

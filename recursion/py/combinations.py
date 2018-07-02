@@ -7,7 +7,7 @@ def combinations(nums, k):
         if len(buf) == k:
             result.append(list(buf))
             return result
-        for i in range(start, len(nums)):
+        for i in range(start, len(nums) - (k - len(buf)) + 1):
             buf.append(nums[i])
             helper(k, i + 1, buf, result)
             buf.pop()
@@ -19,7 +19,7 @@ def combinationsWithDup(nums, k):
         if len(buf) == k:
             result.append(list(buf))
             return result
-        for i in range(start, len(nums)):
+        for i in range(start, len(nums) - (k - len(buf)) + 1):
             if i == start or nums[i] != nums[i - 1]:
                 buf.append(nums[i])
                 helper(k, i + 1, buf, result)

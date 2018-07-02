@@ -42,6 +42,7 @@ class TestLinkedListAlgorithms(unittest.TestCase):
 
 from random import randrange
 from list_merge_sort import list_merge_sort
+from list_quick_sort import list_quick_sort
 
 class TestLinkedListSorting(unittest.TestCase):
     def checkSortImpl(self, sort):
@@ -56,6 +57,9 @@ class TestLinkedListSorting(unittest.TestCase):
 
     def testListMergeSort(self):
         self.checkSortImpl(list_merge_sort)
+
+    def testListQuickSort(self):
+        self.checkSortImpl(list_quick_sort)
 
 if __name__ == "__main__":
     unittest.main()

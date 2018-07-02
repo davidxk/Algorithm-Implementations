@@ -48,9 +48,11 @@ class StackTraversal:
         result = []
         while stack:
             node = stack.pop()
-            result.append(node)
-            stack.append(node.left)
-            stack.append(node.right)
+            result.append(node.val)
+            if node.right:
+                stack.append(node.right)
+            if node.left:
+                stack.append(node.left)
         return result
 
     # Reverse left right, reverse result of preorder

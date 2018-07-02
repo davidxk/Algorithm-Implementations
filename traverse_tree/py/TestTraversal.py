@@ -1,26 +1,31 @@
 from TreeNode import *
-from random import *
 from collections import deque
+import random
+import unittest
 
-class TestTraversal:
-    def generate_random_tree(self, size):
+from StackTraversal import StackTraversal
+from MorrisTraversal import MorrisTraversal
+from RecursiveTraversal import RecursiveTraversal
+
+class TestTraversal(unittest.TestCase):
+    def __random_tree__(self, size):
         pool = set( [str(i) for i in range(size)] )
         cnt = 1
         root = TreeNode( pool.pop() )
         queue = deque([root])
         while queue and cnt < size:
             node = queue.popleft()
-            if random() < 0.7:
+            if pool and (random.random() < 0.7 or not queue):
                 node.left = TreeNode( pool.pop() )
                 queue.append( node.left )
-            if random < 0.7 or not queue:
+            if pool and (random.random() < 0.7 or not queue):
                 node.right = TreeNode( pool.pop() )
                 queue.append( node.right )
             cnt += 1
         return root
 
-    def test_traversal_method(self, impl, size = 100, case = None):
-        root = case or self.generate_random_tree(size)
+    def __testTraversalMethod__(self, impl, size = 100, case = None):
+        root = case or self.__random_tree__(size)
         tag = ["preorder", "inorder", "postorder"]
 
         ans = [0 for i in range(3)]
@@ -33,16 +38,12 @@ class TestTraversal:
         ret[1] = impl.inorderTraversal(root)
         ret[2] = impl.postorderTraversal(root)
 
-        for i in range(3):
-            if ret[i] != ans[i]:
-                print tag[i], "error: "
-                print "returned: ", ret[i]
-                print "expected: ", ans[i]
-        
-        return ret == ans
+        self.assertEqual(ans[0], ret[0])
+        self.assertEqual(ans[1], ret[1])
+        self.assertEqual(ans[2], ret[2])
 
-    def test_stack_traversal_other_methods(self, impl, size = 100):
-        root = self.generate_random_tree(size)
+    def __testOtherMethods__(self, size = 100):
+        root = self.__random_tree__(size)
         tag = ["preorder", "inorder", "postorder"]
 
         ans = [0 for i in range(3)]
@@ -51,30 +52,25 @@ class TestTraversal:
         ans[2] = RecursiveTraversal().postorderTraversal(root)
 
         ret = [0 for i in range(3)]
-        ret[0] = impl.dfsPreorderTraversal(root)
-        ret[1] = impl.inorderTraversal(root)
-        ret[2] = impl.psudoPostorderTraversal(root)
+        ret[0] = StackTraversal().dfsPreorderTraversal(root)
+        ret[1] = StackTraversal().inorderTraversal(root)
+        ret[2] = StackTraversal().psudoPostorderTraversal(root)
 
-        for i in range(3):
-            if ret[i] != ans[i]:
-                print tag[i], "error: "
-                print "returned: ", ret[i]
-                print "expected: ", ans[i]
-        
-        return ret == ans
+        self.assertEqual(ans[0], ret[0])
+        self.assertEqual(ans[1], ret[1])
+        self.assertEqual(ans[2], ret[2])
 
-from StackTraversal import StackTraversal
-from MorrisTraversal import MorrisTraversal
-from RecursiveTraversal import RecursiveTraversal
+    def testStackTraversal(self):
+        for i in range(100):
+            self.__testTraversalMethod__(StackTraversal(), 200)
+
+    def testMorrisTraversal(self):
+        for i in range(100):
+            self.__testTraversalMethod__(MorrisTraversal(), 200)
+
+    def testOtherMethods(self):
+        for i in range(100):
+            self.__testOtherMethods__()
 
 if __name__ == '__main__':
-    cases = 500
-    for impl in [StackTraversal(), MorrisTraversal()]:
-        print "Testing", impl
-        for i in range(cases):
-            if not TestTraversal().test_traversal_method(impl, 200):
-                print "WA: ", impl
-    print "Testing other implementations of stack traversal"
-    for i in range(cases):
-        if not TestTraversal().test_traversal_method(StackTraversal(), 200):
-            print "WA: ", impl
+    unittest.main()

@@ -8,7 +8,7 @@ from topo_sort import topo_sort, dfs_based
 class TestTopoSort(unittest.TestCase):
     def testViterbi(self):
         for _ in range(50):
-            edges = random_dag(isWeighted=True)
+            edges = random_dag(100, isWeighted=True)
             dist1 = viterbi_shortest_path(edges)
             dist2 = dp_shortest_path(edges)
             self.assertEqual(dist1, dist2)
@@ -37,7 +37,7 @@ class TestTopoSort(unittest.TestCase):
 
     def __test_topo__(self, algo):
         for _ in range(50):
-            edges = random_dag(50, isWeighted=False)
+            edges = random_dag(100, isWeighted=False)
             array = algo(edges)
             adjList = self.getAdjList(edges)
             reachable = self.getReachableSet(adjList)
@@ -67,5 +67,4 @@ class TestTopoSort(unittest.TestCase):
             self.assertEqual(algo(edges), [])
 
 if __name__ == "__main__":
-    print "This could take up to 5 seconds"
     unittest.main()

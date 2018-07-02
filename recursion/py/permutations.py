@@ -36,17 +36,3 @@ def permutationsWithDup(nums):
                 #nums[i], nums[start] = nums[start], nums[i]
         return result
     return helper(nums, 0, [])
-
-"""
-[000]
-[000, 100]
-[000, 100, 010, 110]
-[000, 100, 010, 110, 001, 101, 0l1, 111]
-"""
-def bitPermutations(bits):
-    result = [bits]
-    for i in range(len(bits)):
-        for array in result:
-            copy = list(array)
-            copy[i] = not copy[i]
-            result.append(copy)

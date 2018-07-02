@@ -23,7 +23,7 @@ def median_of_medians(array, left, right):
         index = median5(array, i, subright)
         gid = left + (i - left) / 5
         array[index], array[gid] = array[gid], array[index]
-    return m_select(array, left, left + (right - left + 1) / 5,
+    return m_select(array, left, left + (right - left) / 5,
             (right - left) / 10 + 1)
 
 def partition(array, left, right):
@@ -55,4 +55,5 @@ def m_select(array, left, right, rank):
         return m_select(array, center + 1, right, rank - pivot_rank)
 
 def bfprt_select(array, rank):
-    return m_select(array, 0, len(array) - 1, rank)
+    index = m_select(array, 0, len(array) - 1, rank)
+    return array[index]
