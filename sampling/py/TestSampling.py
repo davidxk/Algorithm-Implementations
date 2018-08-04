@@ -1,6 +1,6 @@
 import unittest
 from collections import Counter
-from simple_random_sample import selection_rejection, reservoir_sampling
+from simple_random_sample import *
 from weightd_random_sample import weighted_random_sample
 
 class TestSampling(unittest.TestCase):
@@ -27,6 +27,9 @@ class TestSampling(unittest.TestCase):
             result = sum(weighted_random_sample([1, 2]) for i in range(size))
             self.assertLessEqual(result, size * 0.72)
             self.assertGreaterEqual(result, size * 0.62)
+
+    def testDrawByDraw(self):
+        self.__test_srs__(draw_by_draw, False)
 
     def testSelectionRejection(self):
         self.__test_srs__(selection_rejection, False)

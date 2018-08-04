@@ -1,6 +1,7 @@
 class StackTraversal:
     # Output after stack push
-    def preorderTraversal(self, root):
+    @staticmethod
+    def preorderTraversal(root):
         curr, stack = root, []
         result = []
         while curr or stack:
@@ -13,7 +14,8 @@ class StackTraversal:
         return result
 
     # Output after stack pop
-    def inorderTraversal(self, root):
+    @staticmethod
+    def inorderTraversal(root):
         curr, stack = root, []
         result = []
         while curr or stack:
@@ -26,7 +28,8 @@ class StackTraversal:
         return result
 
     # Store call stack with context, output after second visit
-    def postorderTraversal(self, root):
+    @staticmethod
+    def postorderTraversal(root):
         curr, stack = root, []
         result = []
         while curr or stack:
@@ -43,7 +46,8 @@ class StackTraversal:
         return result
 
     # DFS style only possible for preorder since the root cannot be revisited
-    def dfsPreorderTraversal(self, root):
+    @staticmethod
+    def dfsPreorderTraversal(root):
         stack = [root]
         result = []
         while stack:
@@ -56,7 +60,8 @@ class StackTraversal:
         return result
 
     # Reverse left right, reverse result of preorder
-    def psudoPostorderTraversal(self, root):
+    @staticmethod
+    def psudoPostorderTraversal(root):
         curr, stack = root, []
         result = []
         while curr or stack:
@@ -69,7 +74,7 @@ class StackTraversal:
         result.reverse()
         return result
 
-#   def stackVsRecursive(self, root):           def helper(root, result):
+#   def stackVsRecursive(root):           def helper(root, result):
 #       curr, stack = root, []
 #       result = []
 #       while curr or stack:

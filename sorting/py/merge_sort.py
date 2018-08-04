@@ -33,8 +33,8 @@ def merge(array, start, middle, stop, temp):
         j += 1
         k += 1
 
-    for i in range(k):
-        array[start + i] = temp[i]
+    for k in range(stop - start):
+        array[start + k] = temp[k]
 
 """
 # In 'left-right-pointer' convention

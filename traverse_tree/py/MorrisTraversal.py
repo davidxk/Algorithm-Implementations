@@ -4,7 +4,8 @@ from TreeNode import TreeNode
 
 class MorrisTraversal:
     # Print before curr move to curr.left
-    def preorderTraversal(self, root):
+    @staticmethod
+    def preorderTraversal(root):
         curr = root
         result = []
         while curr:
@@ -26,7 +27,8 @@ class MorrisTraversal:
         return result
 
     # Print before curr move to curr.right
-    def inorderTraversal(self, root):
+    @staticmethod
+    def inorderTraversal(root):
         curr = root
         result = []
         while curr:
@@ -48,7 +50,8 @@ class MorrisTraversal:
         return result
 
     # Print 
-    def postorderTraversal(self, root):
+    @staticmethod
+    def postorderTraversal(root):
         dummy = TreeNode(0)
         dummy.left = root
         curr = dummy
@@ -65,13 +68,14 @@ class MorrisTraversal:
                     node.right = curr
                     curr = curr.left
                 else:
-                    result += self.traceBack(curr.left, node)
+                    result += MorrisTraversal.__traceBack__(curr.left, node)
                     node.right = None
                     curr = curr.right
         return result
 
     # Print path from node to curr.left
-    def traceBack(self, frm, to):
+    @staticmethod
+    def __traceBack__(frm, to):
         curr = frm
         result = []
         while curr != to:
@@ -81,7 +85,7 @@ class MorrisTraversal:
         result.reverse()
         return result
 
-#   def preorderTraversal(self, root):
+#   def preorderTraversal(root):
 #       curr = root
 #       result = []
 #       while curr:

@@ -29,9 +29,9 @@ class TestTraversal(unittest.TestCase):
         tag = ["preorder", "inorder", "postorder"]
 
         ans = [0 for i in range(3)]
-        ans[0] = RecursiveTraversal().preorderTraversal(root)
-        ans[1] = RecursiveTraversal().inorderTraversal(root)
-        ans[2] = RecursiveTraversal().postorderTraversal(root)
+        ans[0] = RecursiveTraversal.preorderTraversal(root)
+        ans[1] = RecursiveTraversal.inorderTraversal(root)
+        ans[2] = RecursiveTraversal.postorderTraversal(root)
 
         ret = [0 for i in range(3)]
         ret[0] = impl.preorderTraversal(root)
@@ -47,14 +47,14 @@ class TestTraversal(unittest.TestCase):
         tag = ["preorder", "inorder", "postorder"]
 
         ans = [0 for i in range(3)]
-        ans[0] = RecursiveTraversal().preorderTraversal(root)
-        ans[1] = RecursiveTraversal().inorderTraversal(root)
-        ans[2] = RecursiveTraversal().postorderTraversal(root)
+        ans[0] = RecursiveTraversal.preorderTraversal(root)
+        ans[1] = RecursiveTraversal.inorderTraversal(root)
+        ans[2] = RecursiveTraversal.postorderTraversal(root)
 
         ret = [0 for i in range(3)]
-        ret[0] = StackTraversal().dfsPreorderTraversal(root)
-        ret[1] = StackTraversal().inorderTraversal(root)
-        ret[2] = StackTraversal().psudoPostorderTraversal(root)
+        ret[0] = StackTraversal.dfsPreorderTraversal(root)
+        ret[1] = StackTraversal.inorderTraversal(root)
+        ret[2] = StackTraversal.psudoPostorderTraversal(root)
 
         self.assertEqual(ans[0], ret[0])
         self.assertEqual(ans[1], ret[1])
@@ -62,11 +62,11 @@ class TestTraversal(unittest.TestCase):
 
     def testStackTraversal(self):
         for i in range(100):
-            self.__testTraversalMethod__(StackTraversal(), 200)
+            self.__testTraversalMethod__(StackTraversal, 200)
 
     def testMorrisTraversal(self):
         for i in range(100):
-            self.__testTraversalMethod__(MorrisTraversal(), 200)
+            self.__testTraversalMethod__(MorrisTraversal, 200)
 
     def testOtherMethods(self):
         for i in range(100):

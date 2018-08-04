@@ -1,5 +1,5 @@
 
-def gcd(big, small):
+def gcd(large, small):
     while small:
-        big, small = small, big % small
-    return big
+        large, small = small, large % small
+    return large

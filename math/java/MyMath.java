@@ -1,10 +1,10 @@
 
 class MyMath
 {
-	public int gcd(int big, int small)
+	public int gcd(int large, int small)
 	{
 		if(small == 0)
-			return big;
-		return gcd(small, big % small);
+			return large;
+		return gcd(small, large % small);
 	}
 }

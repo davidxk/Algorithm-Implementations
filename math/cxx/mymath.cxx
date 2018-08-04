@@ -1,11 +1,11 @@
 #include <algorithm>
 
-int gcd(int big, int small)
+int gcd(int large, int small)
 {
 	while(small)
 	{
-		std::swap(big, small);
-		small %= big;
+		std::swap(large, small);
+		small %= large;
 	}
-	return big;
+	return large;
 }

@@ -1,5 +1,17 @@
+#include <algorithm>
 #include <cstdlib>
 #include <vector>
+
+std::vector<int> draw_by_draw(std::vector<int>& array, int k)
+{
+	int index;
+	for(int i = 0; i < k; i++)
+	{
+		index = rand() % (array.size() - i);
+		std::swap(array[index], array[array.size() - 1 - i]);
+	}
+	return std::vector<int>(array.begin() + array.size() - k, array.end());
+}
 
 std::vector<int> selection_rejection(const std::vector<int>& array, int k)
 {

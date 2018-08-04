@@ -1,9 +1,18 @@
-import heapq
 import random
 
 # Simple Random Sample: get a sample of size k from input of size n
 
-# Simple Random Sample algorithm for fixed length input
+# Simple Random Sample algorithm for fixed-length, randomly-accessible input
+# Useful when the sampling has to be done in a draw-by-draw fashion
+# Time:  O(k)
+# Space: O(k)
+def draw_by_draw(array, k):
+    for i in range(k):
+        index = random.randrange(len(array) - i)
+        array[index], array[-1 - i] = array[-1 - i], array[index]
+    return array[len(array) - k:]
+
+# Simple Random Sample algorithm for fixed-length input
 # Intuition: randomly taking 3 balls out of the box at once is equivalent to
 #            randomly taking 1 ball from the box without replacement 3 times
 # Time:  O(n)

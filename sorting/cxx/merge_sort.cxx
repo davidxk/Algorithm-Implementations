@@ -1,43 +1,43 @@
 #include <vector>
 
 void merge_sort(std::vector<int>& array);
-void m_sort(std::vector<int>& array, int start, int end);
-void merge(std::vector<int>& array, int start, int middle, int end);
+void m_sort(std::vector<int>& array, int start, int stop);
+void merge(std::vector<int>& array, int start, int middle, int stop);
 
 void merge_sort(std::vector<int>& array)
 {
 	m_sort(array, 0, array.size());
 }
 
-void m_sort(std::vector<int>& array, int start, int end)
+void m_sort(std::vector<int>& array, int start, int stop)
 {
-	if(end - start > 1)
+	if(stop - start > 1)
 	{
-		int middle = (start + end) / 2;
+		int middle = start + (stop - start) / 2;
 		m_sort(array, start, middle);
-		m_sort(array, middle, end);
-		merge(array, start, middle, end);
+		m_sort(array, middle, stop);
+		merge(array, start, middle, stop);
 	}
 }
 
-void merge(std::vector<int>& array, int start, int middle, int end)
+void merge(std::vector<int>& array, int start, int middle, int stop)
 {
-	static std::vector<int> tmp(array.size());
+	static std::vector<int> temp(array.size());
 	int i = start, j = middle, k = 0;
-	while(i < middle && j < end)
+	while(i < middle && j < stop)
 	{
 		if(array[i] < array[j])
-			tmp[ k++ ] = array[ i++ ];
+			temp[ k++ ] = array[ i++ ];
 		else
-			tmp[ k++ ] = array[ j++ ];
+			temp[ k++ ] = array[ j++ ];
 	}
 
 	while(i < middle)
-		tmp[ k++ ] = array[ i++ ];
+		temp[ k++ ] = array[ i++ ];
 
-	while(j < end)
-		tmp[ k++ ] = array[ j++ ];
+	while(j < stop)
+		temp[ k++ ] = array[ j++ ];
 
-	for(int i = 0; i < k; i++)
-		array[start + i] = tmp[i];
+	for(int k = 0; k < stop - start; k++)
+		array[start + k] = temp[k];
 }

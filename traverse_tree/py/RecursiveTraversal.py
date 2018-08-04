@@ -1,5 +1,6 @@
 class RecursiveTraversal:
-    def preorderTraversal(self, root):
+    @staticmethod
+    def preorderTraversal(root):
         result = []
 
         def helper(root, result):
@@ -12,7 +13,8 @@ class RecursiveTraversal:
         helper(root, result)
         return result
 
-    def inorderTraversal(self, root):
+    @staticmethod
+    def inorderTraversal(root):
         result = []
 
         def helper(root, result):
@@ -25,7 +27,8 @@ class RecursiveTraversal:
         helper(root, result)
         return result
 
-    def postorderTraversal(self, root, result = []):
+    @staticmethod
+    def postorderTraversal(root, result = []):
         result = []
 
         def helper(root, result):

@@ -25,12 +25,12 @@ class Trie:
         return curr.isLeaf
 
     def searchPrefix(self, prefix):
-        def helper(node, buf, result):
+        def dfs(node, buf, result):
             if node.isLeaf:
                 result.append(str().join(buf))
             for char, child in node.children.items():
                 buf.append(char)
-                helper(child, buf, result)
+                dfs(child, buf, result)
                 buf.pop()
             return result
         curr = self.root
@@ -38,7 +38,7 @@ class Trie:
             if char not in curr.children:
                 return []
             curr = curr.children[char]
-        return helper(curr, list(prefix), [])
+        return dfs(curr, list(prefix), [])
 
     def containsPrefix(self, prefix):
         curr = self.root
