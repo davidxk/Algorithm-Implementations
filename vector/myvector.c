@@ -5,12 +5,30 @@
 void init(struct myvector* vec)
 {
 	vec->init = init;
+	vec->copy = copy;
 	vec->size = size;
 	vec->push_back = push_back;
+	vec->front = front;
+	vec->back = back;
 	vec->destroy = destroy;
 	vec->_size = 0;
 	vec->_capacity = 512;
 	vec->data = (void**) malloc(sizeof(void*) * vec->_capacity);
+}
+
+void copy(struct myvector* vec, const struct myvector* other)
+{
+	vec->init = init;
+	vec->copy = copy;
+	vec->size = size;
+	vec->push_back = push_back;
+	vec->front = front;
+	vec->back = back;
+	vec->destroy = destroy;
+	vec->_size = other->_size;
+	vec->_capacity = other->_capacity;
+	vec->data = (void**) malloc(sizeof(void*) * vec->_capacity);
+	memcpy(vec->data, other->data, sizeof(void*) * vec->_capacity);
 }
 
 int empty(struct myvector* vec)
@@ -18,7 +36,7 @@ int empty(struct myvector* vec)
 	return vec->_size == 0;
 }
 
-int size(struct myvector* vec)
+int size(const struct myvector* vec)
 {
 	return vec->_size;
 }
@@ -42,7 +60,12 @@ void pop_back(struct myvector* vec)
 	vec->_size -= 1;
 }
 
-void* back(struct myvector* vec)
+void* front(const struct myvector* vec)
+{
+	return vec->data[0];
+}
+
+void* back(const struct myvector* vec)
 {
 	return vec->data[vec->_size - 1];
 }
