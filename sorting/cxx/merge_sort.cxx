@@ -1,28 +1,28 @@
 #include <vector>
 
 void merge_sort(std::vector<int>& array);
-void m_sort(std::vector<int>& array, int start, int stop);
-void merge(std::vector<int>& array, int start, int middle, int stop);
+void m_sort(std::vector<int>& array, std::vector<int>& temp, int start, int stop);
+void merge(std::vector<int>& array, std::vector<int>& temp, int start, int middle, int stop);
 
 void merge_sort(std::vector<int>& array)
 {
-	m_sort(array, 0, array.size());
+	std::vector<int> temp(array.size());
+	m_sort(array, temp, 0, array.size());
 }
 
-void m_sort(std::vector<int>& array, int start, int stop)
+void m_sort(std::vector<int>& array, std::vector<int>& temp, int start, int stop)
 {
 	if(stop - start > 1)
 	{
 		int middle = start + (stop - start) / 2;
-		m_sort(array, start, middle);
-		m_sort(array, middle, stop);
-		merge(array, start, middle, stop);
+		m_sort(array, temp, start, middle);
+		m_sort(array, temp, middle, stop);
+		merge(array, temp, start, middle, stop);
 	}
 }
 
-void merge(std::vector<int>& array, int start, int middle, int stop)
+void merge(std::vector<int>& array, std::vector<int>& temp, int start, int middle, int stop)
 {
-	static std::vector<int> temp(array.size());
 	int i = start, j = middle, k = 0;
 	while(i < middle && j < stop)
 	{

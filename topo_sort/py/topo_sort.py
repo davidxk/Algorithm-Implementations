@@ -12,6 +12,8 @@ def topo_sort(edges):
         indegree[v] += 1
 
     front = [node for node in indegree if indegree[node] is 0]
+    for node in front:
+        indegree.pop(node)
     result = []
     while front:
         node = front.pop()

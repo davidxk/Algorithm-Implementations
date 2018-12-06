@@ -5,55 +5,32 @@
 #include "heap_sort.cxx"
 #include "quick_sort_hoare.cxx"
 #include "quick_sort_lomuto.cxx"
+#include <algorithm>
 #include <chrono>
 #include <iostream>
 #include <unordered_map>
 #include <vector>
 
-const int N = 5000;
-std::vector<int> a(N);
-
-bool check_monotonic(std::vector<int>& array)
+bool check_sort_impl(void (*func)(std::vector<int>&))
 {
-	for(int i = 0; i < array.size(); i++)
+	const int times = 100;
+	for(int j = 0; j < times; j++)
 	{
-		if(array[i] < 0 || array[i] > N)
-			return false;
-		if(i >= 1 && array[i-1] > array[i])
+		int size = rand() % 1000 + 1000;
+		std::vector<int> array(size);
+		for(int i = 0; i < size; i++)
+			array[i] = rand() % size;
+		std::vector<int> original = array;
+		func( array );
+		sort(original.begin(), original.end());
+		for(int i = 0; i < size; i++)
+			if(array[i] != original[i])
+				return false;
+		if(array.size() != original.size())
 			return false;
 	}
 	return true;
 }
-
-bool check_consistency(const std::vector<int>& original, const std::vector<int>& array)
-{
-	std::unordered_map<int, int> cnt;
-	for(int i = 0; i < original.size(); i++)
-		if(cnt.count( original[i] ) == 0)
-			cnt[original[i]] = 1;
-		else
-			cnt[original[i]] += 1;
-
-	for(int i = 0; i < array.size(); i++)
-		if(cnt.find( original[i] ) == cnt.end())
-			return false;
-		else
-			cnt[original[i]] -= 1;
-	int sum = 0;
-	for(std::unordered_map<int,int>::iterator it=cnt.begin(); it!=cnt.end(); it++)
-		sum += it->second;
-	return sum == 0;
-}
-
-int check_sort_impl(void (*func)(std::vector<int>&))
-{
-	for(int i = 0; i < N; i++)
-		a[i] = rand() % N;
-	std::vector<int> original = a;
-	func( a );
-	return check_monotonic( a ) && check_consistency(original, a);
-}
-
 
 int main()
 {
