@@ -51,14 +51,16 @@ class TestTraversal(unittest.TestCase):
         ans[1] = RecursiveTraversal.inorderTraversal(root)
         ans[2] = RecursiveTraversal.postorderTraversal(root)
 
-        ret = [0 for i in range(3)]
+        ret = [0 for i in range(4)]
         ret[0] = StackTraversal.dfsPreorderTraversal(root)
-        ret[1] = StackTraversal.inorderTraversal(root)
+        ret[1] = StackTraversal.dfsInorderTraversal(root)
         ret[2] = StackTraversal.psudoPostorderTraversal(root)
+        ret[3] = StackTraversal.dfsPostorderTraversal(root)
 
         self.assertEqual(ans[0], ret[0])
         self.assertEqual(ans[1], ret[1])
         self.assertEqual(ans[2], ret[2])
+        self.assertEqual(ans[2], ret[3])
 
     def testStackTraversal(self):
         for i in range(100):

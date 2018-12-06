@@ -52,11 +52,44 @@ class StackTraversal:
         result = []
         while stack:
             node = stack.pop()
+            if node is None:
+                continue
             result.append(node.val)
-            if node.right:
-                stack.append(node.right)
-            if node.left:
-                stack.append(node.left)
+            stack.append(node.right)
+            stack.append(node.left)
+        return result
+
+    @staticmethod
+    def dfsInorderTraversal(root):
+        stack = [[0, root]]
+        result = []
+        funcs = [lambda node: stack.append([0, node.left]),
+                lambda node: result.append(node.val), 
+                lambda node: stack.append([0, node.right])]
+        while stack:
+            eip, node = top = stack[-1]
+            if eip == len(funcs) or node is None:
+                stack.pop()
+                continue
+            funcs[eip](node)
+            top[0] += 1
+        return result
+
+    @staticmethod
+    def dfsPostorderTraversal(root):
+        EXPAND, VISIT = 0, 1
+        stack = [(EXPAND, root)]
+        result = []
+        while stack:
+            op, node = stack.pop()
+            if node is None:
+                continue
+            if op == EXPAND:
+                stack.append((VISIT, node))
+                stack.append((EXPAND, node.right))
+                stack.append((EXPAND, node.left))
+            else:
+                result.append(node.val)
         return result
 
     # Reverse left right, reverse result of preorder
