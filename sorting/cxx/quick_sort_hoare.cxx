@@ -56,17 +56,17 @@ int median3(std::vector<int>& array, int left, int right)
 int partition(std::vector<int>& array, int left, int right)
 {
 	int pivot = median3(array, left, right);
-	int i = left, j = right;
+	int i = left + 1, j = right - 1;
 	while(true)
 	{
-		while(array[++i] < pivot) ;
-		while(pivot < array[--j]) ;
+		while(array[i] < pivot) i++;
+		while(pivot < array[j]) j--;
 		if(i >= j)
 		{
 			std::swap(array[i], array[right]);
 			return i;
 		}
-		std::swap(array[i], array[j]);
+		std::swap(array[i++], array[j--]);
 	}
 }
 
