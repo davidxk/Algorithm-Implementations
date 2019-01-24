@@ -2,8 +2,8 @@
 * The **single-source shortest path problem**, in which we have to find shortest paths from a source vertex v to all other vertices in the graph.
 * The **all-pairs shortest path problem,** in which we have to find shortest paths between every pair of vertices v, v' in the graph.
 
-| Algorithm | type | Graph type | Weighted | Graph representation | Time complexity|
-|-----------|------|------------|----------------------|--------------------|
+| Algorithm | type | Graph type | Weighted | Graph representation | Time complexity |
+|-----------|------|------------|----------|----------------------|-----------------|
 | DFS | Single-source shortest paths | tree | weighted | tree | $O(V + E)$ |
 | Viterbi | Single-source shortest paths | graph | weighted dag | adjacency list | $O(V + E)$ |
 | BFS | Single-source shortest paths | graph | unweighted | adjacency list | $O(V + E)$ |
