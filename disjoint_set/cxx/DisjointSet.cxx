@@ -32,6 +32,6 @@ void DisjointSet::linkSet(int root1, int root2)
 		if(height[root1] == height[root2])
 			height[root2] += 1;
 		height.erase(root1);
-		parent[root2] = root1;
+		parent[root1] = root2;
 	}
 }
