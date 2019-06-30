@@ -16,7 +16,7 @@ def bfs(adjList, source):
 
 def bfs_template_1(adjList, source):
     front = deque([source])
-    visited = set(source)
+    visited = {source}
     while front:
         node = front.popleft()
         # Do something here
@@ -29,7 +29,7 @@ def bfs_template_1(adjList, source):
 # Verified
 def bfs_template_2(adjList, source):
     front = [source]
-    visited = set(source)
+    visited = {source}
     while front:
         children = []
         for node in front:
