@@ -28,7 +28,7 @@ My implementations of classic algorithms and data structures in Python, C, C++ a
 | shortest path | bfs, Dijkstra's, Bellman–Ford, SPFA, Floyd–Warshall, Johnson's |
 | graph search        | bidirectional, depth limited, iterative deepening |
 | topological sort    | Kahn's, DFS-based, Viterbi shortest path          |
-| recursion           | permutations, combinations, subsets               |
+| recursion           | permutations, combinations, subsets, partitions   |
 | string              | naive string matcher, KMP string matcher          |
 | math                | gcd                                               |
 | majority            | Boyer–Moore majority vote                         |
