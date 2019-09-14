@@ -19,7 +19,8 @@ class TestKnapsack(unittest.TestCase):
             max2 = knapsack_two_rows(weights, values, capacity)
             max3 = knapsack_one_row(weights, values, capacity)
             max4 = knapsack_memo(weights, values, capacity)
-            self.assertEquals(max1, max2, max3)
+            self.assertEqual(max1, max2)
+            self.assertEqual(max1, max3)
             self.assertEqual(max1, max4)
 
     def __speed_test__(self, algo):

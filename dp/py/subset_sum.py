@@ -1,8 +1,9 @@
+# Find a subset: n steps, for each element decide to include it or not
 # OPT[i][k]: maximum subset sum of a[:i] that is less than or equal to k
 # OPT[i][k] = max(OPT[i - 1][k], OPT[i - 1][k - a[i - 1]] + a[i - 1])
 # OPT[0][k] = 0
 # OPT[i][0] = 0
-# return OPT[n - 1][K]
+# return OPT[n][K]
 # Time:  O(nK)
 # Space: O(nK)
 def subset_sum(nums, K):

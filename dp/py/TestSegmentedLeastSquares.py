@@ -34,7 +34,7 @@ def brute_force_sls(nums, error, penalty):
             for segmentation in get_all_segmentations(nums))
 
 class TestSegmentedLeastSquares(unittest.TestCase):
-    def __gen_cases__(self):
+    def __gen_case__(self):
         nums = []
         nums += [random.randrange(0, 100) for i in range(3)]
         nums += [random.randrange(50, 150) for i in range(3)]
@@ -45,7 +45,7 @@ class TestSegmentedLeastSquares(unittest.TestCase):
 
     def testTableFilling(self):
         for i in range(50):
-            nums, penalty = self.__gen_cases__()
+            nums, penalty = self.__gen_case__()
             min1 = segmented_least_squares(nums, variance, penalty)
             min2 = brute_force_sls(nums, variance, penalty)
             self.assertEqual(min1, min2)

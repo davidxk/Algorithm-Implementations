@@ -1,3 +1,4 @@
+# Find a subset: n steps, for each item decide to include it or not
 # OPT[i][k]: maximum value from items[:i] where the total weight is <= k
 # OPT[i][k] = max(OPT[i - 1][k], OPT[i - 1][k - w[i-1]] + v[i-1])
 # OPT[0][k] = 0
