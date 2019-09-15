@@ -23,15 +23,15 @@ class TestWeightedIntervalScheduling(unittest.TestCase):
         for case in cases:
             startTimes, endTimes, values = case
             max1 = weighted_interval_scheduling(startTimes, endTimes, values)
-            max2 = weighted_is_memo(startTimes, endTimes, values)
+            max2 = weighted_interval_scheduling_memo(startTimes, endTimes, values)
             self.assertEqual(max1, max2)
 
     def testFindSolution(self):
         cases = self.__gen_cases__(100)
         for case in cases:
             startTimes, endTimes, values = case
-            sol1, max1 = weighted_is_find_sol(startTimes, endTimes, values)
-            sol2, max2 = weighted_is_memo_find_sol(startTimes, endTimes, values)
+            sol1, max1 = weighted_interval_scheduling_sol(startTimes, endTimes, values)
+            sol2, max2 = weighted_interval_scheduling_memo_sol(startTimes, endTimes, values)
             self.assertEqual(max1, max2)
             self.assertEqual(set(sol1), set(sol2))
 

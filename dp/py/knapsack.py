@@ -17,6 +17,7 @@ def knapsack(weights, values, capacity):
                 OPT[i][k] = max(OPT[i - 1][k], OPT[i - 1][k - weight] + value)
     return OPT[-1][-1]
 
+# Space: O(K)
 def knapsack_two_rows(weights, values, capacity):
     prev = [0] * (capacity + 1)
     OPT = [0] * (capacity + 1)
@@ -29,6 +30,10 @@ def knapsack_two_rows(weights, values, capacity):
                 OPT[k] = max(prev[k], prev[k - weights[i]] + values[i])
     return OPT[-1]
 
+# Space: O(K)
+# Each cell references values of cells to its left from the previous iteration
+# So fill the table from right to left so that cells on the left-hand side will
+#  keep the values from the previous iteration.
 def knapsack_one_row(weights, values, capacity):
     OPT = [0] * (capacity + 1)
     for i in range(len(weights)):

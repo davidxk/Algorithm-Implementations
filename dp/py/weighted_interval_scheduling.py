@@ -26,7 +26,7 @@ def weighted_interval_scheduling(startTimes, finishTimes, values):
             OPT[j] = max(values[j], OPT[j - 1])
     return OPT[len(values) - 1]
 
-def weighted_is_find_sol(startTimes, finishTimes, values):
+def weighted_interval_scheduling_sol(startTimes, finishTimes, values):
     p = precompute_rightmost_compatible(startTimes, finishTimes)
     OPT = [0] * len(values)
     # WARNING: Making use of OPT[-1] = 0; other languages may not support
@@ -45,7 +45,7 @@ def weighted_is_find_sol(startTimes, finishTimes, values):
             j -= 1
     return solution, OPT[len(values) - 1]
 
-def weighted_is_memo(startTimes, finishTimes, values):
+def weighted_interval_scheduling_memo(startTimes, finishTimes, values):
     p = precompute_rightmost_compatible(startTimes, finishTimes)
     def compute_opt(j):
         if j in cache:
@@ -55,7 +55,7 @@ def weighted_is_memo(startTimes, finishTimes, values):
     cache = {-1: 0}
     return compute_opt(len(values) - 1)
 
-def weighted_is_memo_find_sol(startTimes, finishTimes, values):
+def weighted_interval_scheduling_memo_sol(startTimes, finishTimes, values):
     p = precompute_rightmost_compatible(startTimes, finishTimes)
     def compute_opt(j):
         if j in cache:
