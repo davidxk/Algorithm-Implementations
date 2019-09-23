@@ -36,8 +36,8 @@ class DisjointSet:
     from collections import defaultdict
     def partition(self):
         mapping = defaultdict(list)
-        for child in parent:
-            mapping[parent[child]].append(child)
+        for elem in self.parent:
+            mapping[self.find_set(elem)].append(elem)
         return mapping.values()
 
     def __len__(self):
@@ -82,8 +82,8 @@ class DisjointSetLinkBySize:
     from collections import defaultdict
     def partition(self):
         mapping = defaultdict(list)
-        for child in self.parent:
-            mapping[self.find_set(child)].append(child)
+        for elem in self.parent:
+            mapping[self.find_set(elem)].append(elem)
         return mapping.values()
 
     def component_size(self, elem):

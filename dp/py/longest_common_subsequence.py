@@ -23,9 +23,10 @@ def longest_common_subsequence_memo(str1, str2):
             return 0
         elif (end1, end2) in cache:
             return cache[(end1, end2)]
-        cache[(end1, end2)] = max(helper(end1 - 1, end2), \
-                helper(end1, end2 - 1), 
-                helper(end1 - 1, end2 - 1) + (str1[end1 - 1] == str2[end2 - 1]))
+        cache[(end1, end2)] = max(
+                helper(end1 - 1, end2 - 1) + (str1[end1 - 1] == str2[end2 - 1]),
+                helper(end1 - 1, end2),
+                helper(end1, end2 - 1))
         return cache[(end1, end2)]
     cache = {}
     return helper(len(str1), len(str2))
