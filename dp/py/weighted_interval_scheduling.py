@@ -13,8 +13,9 @@ def precompute_rightmost_compatible(startTimes, finishTimes):
 #                  p(j) is the index of the latest-ending j-compatible interval
 # OPT[0] = values[0]
 # return OPT[n-1]
-# Time:  O(n) given intervals sorted by finish time
+# Time:  O(n log n)
 # Space: O(n)
+# Precondition: intervals sorted by finish time
 def weighted_interval_scheduling(startTimes, finishTimes, values):
     p = precompute_rightmost_compatible(startTimes, finishTimes)
     OPT = [0] * len(values)
