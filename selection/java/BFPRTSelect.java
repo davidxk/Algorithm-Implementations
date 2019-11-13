@@ -46,7 +46,7 @@ public class BFPRTSelect implements SelectionAlgorithm
 		while(true)
 		{
 			while(array[i] < pivot) i++;
-			while(left <= j && pivot < array[j]) j--;
+			while(pivot < array[j] && i < j) j--;
 			if(i >= j)
 			{
 				array[i] = array[i] ^ array[right] ^ (array[right] = array[i]);

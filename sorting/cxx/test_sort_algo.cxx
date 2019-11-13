@@ -5,6 +5,7 @@
 #include "heap_sort.cxx"
 #include "quick_sort_hoare.cxx"
 #include "quick_sort_lomuto.cxx"
+#include "radix_exchange_sort.cxx"
 #include <algorithm>
 #include <chrono>
 #include <iostream>
@@ -19,7 +20,7 @@ bool check_sort_impl(void (*func)(std::vector<int>&))
 		int size = rand() % 1000 + 1000;
 		std::vector<int> array(size);
 		for(int i = 0; i < size; i++)
-			array[i] = rand() % size;
+			array[i] = rand() % size - size / 2;
 		std::vector<int> original = array;
 		func( array );
 		sort(original.begin(), original.end());
@@ -35,10 +36,16 @@ bool check_sort_impl(void (*func)(std::vector<int>&))
 int main()
 {
 	typedef void (*sort_func)(std::vector<int>&);
-	std::vector<sort_func> funcs = { bubble_sort, selection_sort, insertion_sort,
-		merge_sort, heap_sort, quick_sort_hoare, quick_sort_lomuto };
-	std::vector<std::string> names = { "bubble_sort", "selection_sort", "insertion_sort",
-		"merge_sort", "heap_sort", "quick_sort_hoare", "quick_sort_lomuto" };
+	std::vector<sort_func> funcs = {
+		bubble_sort, selection_sort, insertion_sort,
+		merge_sort, heap_sort, quick_sort_hoare, quick_sort_lomuto,
+		radix_exchange_sort
+	};
+	std::vector<std::string> names = {
+		"bubble_sort", "selection_sort", "insertion_sort",
+		"merge_sort", "heap_sort", "quick_sort_hoare", "quick_sort_lomuto",
+		"radix_exchange_sort"
+	};
 	bool isPass;
 	std::chrono::system_clock::time_point begin, end;
 	std::chrono::milliseconds runtime;

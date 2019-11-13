@@ -3,7 +3,7 @@
 
 void quick_sort_hoare(std::vector<int>& array);
 
-# define HOARE_BEGIN namespace hoare{
+# define HOARE_BEGIN namespace hoare {
 # define HOARE_END };
 
 HOARE_BEGIN
