@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <climits>
 #include <vector>
 
 void radix_exchange_sort(std::vector<int>& array);
@@ -43,12 +44,12 @@ RADIX_EXCHANGE_END
 
 void radix_exchange_sort(std::vector<int>& array)
 {
-	int signMask = 1 << (sizeof(int) * 8  - 1);
-	for(int& elem: array)
-		elem ^= signMask;
+	int signMask = 1 << (sizeof(int) * CHAR_BIT  - 1);
+	for(int& num: array)
+		num ^= signMask;
 
-	radix_exchange::r_sort(array, 0, array.size() - 1, sizeof(int) * 8 - 1);
+	radix_exchange::r_sort(array, 0, array.size() - 1, sizeof(int) * CHAR_BIT - 1);
 
-	for(int& elem: array)
-		elem ^= signMask;
+	for(int& num: array)
+		num ^= signMask;
 }

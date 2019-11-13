@@ -6,6 +6,7 @@
 #include "quick_sort_hoare.cxx"
 #include "quick_sort_lomuto.cxx"
 #include "radix_exchange_sort.cxx"
+#include "straight_radix_sort.cxx"
 #include <algorithm>
 #include <chrono>
 #include <iostream>
@@ -39,12 +40,12 @@ int main()
 	std::vector<sort_func> funcs = {
 		bubble_sort, selection_sort, insertion_sort,
 		merge_sort, heap_sort, quick_sort_hoare, quick_sort_lomuto,
-		radix_exchange_sort
+		radix_exchange_sort, straight_radix_sort
 	};
 	std::vector<std::string> names = {
 		"bubble_sort", "selection_sort", "insertion_sort",
 		"merge_sort", "heap_sort", "quick_sort_hoare", "quick_sort_lomuto",
-		"radix_exchange_sort"
+		"radix_exchange_sort", "straight_radix_sort"
 	};
 	bool isPass;
 	std::chrono::system_clock::time_point begin, end;
