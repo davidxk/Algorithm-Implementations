@@ -40,3 +40,17 @@ def bfs_template_2(adjList, source):
                     visited.add(child)
         front = children
     return None
+
+def bfs_template_3(adjList, source):
+    front = deque([source])
+    visited = {source}
+    while front:
+        frontLen = len(front)
+        for _ in range(frontLen):
+            node = front.popleft()
+            # Do something here
+            for child in adjList[node]:
+                if child not in visited:
+                    front.append(child)
+                    visited.add(child)
+    return None
