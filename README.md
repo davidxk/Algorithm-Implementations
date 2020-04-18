@@ -23,6 +23,7 @@ My implementations of classic algorithms and data structures in Python, C, C++ a
 | sorting               | bubble sort, selection sort, merge sort, heap sort, quick sort, k-way merge sort |
 | selection             | quick select, BFPRT select                                                       |
 | linked list           | find middle, reverse linked list, cycle detection, merge sort                    |
+| stack                 | next greater
 | tree traversal        | recursive, stack, Morris                                                         |
 | minimal spanning tree | Prim's, Kruskal's                                                                |
 | graph                 | connected component, bipartite test, tree test                                   |
