@@ -22,14 +22,26 @@ def binary_search(array, target):
             right = center - 1
     return -1
 
+# isRight returns true when
+# a) array[center] is not the target and
+# b) target is in (center, right]
+# isRight returns false when
+# a) array[center] may be the target and
+# b) target is in [left, center]
+#
+# Loop ends when
+# a) right = center == left or
+# b) left = center + 1 == right
+# So it does not matter which one you return
 def general_binary_search(array, isRight):
     left, right = 0, len(array) - 1
-    while left <= right:
+    while left < right:
         center = left + (right - left) // 2
         if isRight(array[center]):
             left = center + 1
         else:
-            right = center - 1
+            right = center
+    # assert left == right
     return left
 
 def lower(array, target):
