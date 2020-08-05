@@ -23,9 +23,9 @@ void q_select(std::vector<int>& array, int left, int right, int rank)
 	}
 	int center = partition(array, left, right);
 	if(rank < center)
-		return q_select(array, left, center - 1, rank);
+		q_select(array, left, center - 1, rank);
 	else if(rank > center)
-		return q_select(array, center + 1, right, rank);
+		q_select(array, center + 1, right, rank);
 }
 
 void insertion_sort(std::vector<int>& array, int left, int right)
@@ -34,7 +34,7 @@ void insertion_sort(std::vector<int>& array, int left, int right)
 	for(int i = left + 1; i < right + 1; i++)
 	{
 		x = array[i];
-		for(j = i - 1; j >= left and x < array[j]; j--)
+		for(j = i - 1; j >= left and array[j] > x; j--)
 			array[j + 1] = array[j];
 		array[j + 1] = x;
 	}
@@ -46,8 +46,8 @@ int median3(std::vector<int>& array, int left, int right)
 	std::vector<int> tmp = { array[left], array[center], array[right] }; 
 	insertion_sort(tmp, 0, 2);
 	array[left] = tmp[0];
-	array[right] = tmp[2];
-	array[center] = tmp[1];
+	array[center] = tmp[2];
+	array[right] = tmp[1];
 	return array[right];
 }
 

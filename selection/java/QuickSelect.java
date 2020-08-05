@@ -10,7 +10,7 @@ public class QuickSelect implements SelectionAlgorithm
 		{
 			x = array[i];
 			j = i - 1;
-			for(j = i - 1; j >= left && x < array[j]; j--)
+			for(j = i - 1; j >= left && array[j] > x; j--)
 				array[j + 1] = array[j];
 			array[j + 1] = x;
 		}

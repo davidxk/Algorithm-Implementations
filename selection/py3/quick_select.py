@@ -27,6 +27,7 @@ def partition(array, left, right):
             i += 1
         while pivot < array[j]:
             j -= 1
+        """ if i == j there is no need to swap, iteration ends """
         if i >= j:
             array[i], array[right] = array[right], array[i]
             return i

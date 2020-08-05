@@ -15,7 +15,7 @@ void _insertion_sort(int *array, int left, int right)
 	for(i = left + 1; i < right + 1; i++)
 	{
 		x = array[i];
-		for(j = i - 1; j >= left && x < array[j]; j--)
+		for(j = i - 1; j >= left && array[j] > x; j--)
 			array[j + 1] = array[j];
 		array[j + 1] = x;
 	}
