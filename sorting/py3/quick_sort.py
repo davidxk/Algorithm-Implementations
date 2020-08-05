@@ -20,15 +20,18 @@ def median3(array, left, right):
 
 def partition(array, left, right):
     pivot = median3(array, left, right)
+    # Invariant: array[left] <= pivot && array[right] == pivot
     i, j = left + 1, right - 1
     while True:
+        # Invariant: array[i] >= pivot
         while array[i] < pivot:
             i += 1
-        # Invariant: array[i] >= pivot
+        # Invariant: array[j] <= pivot
         while pivot < array[j]:
             j -= 1
-        # Invariant: array[j] <= pivot
+        # If i == j there is no need to swap
         if i >= j:
+            # Because array[i] >= pivot, array[i] should be put on the right
             array[i], array[right] = array[right], array[i]
             return i
         array[i], array[j] = array[j], array[i]
