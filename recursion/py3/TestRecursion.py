@@ -1,4 +1,5 @@
 from permutations import permutations, permutationsWithDup
+from permutations import permsDedupCounter, permsDedupArray
 from combinations import combinations, combinationsWithDup
 from subsets import subsets, subsetsWithDup
 from partitions import partitions
@@ -19,11 +20,17 @@ class TestRecursion(unittest.TestCase):
     def testPermutationsWithDup(self):
         for i in range(50):
             case = [random.randrange(3) for i in range(random.randrange(3, 8))]
-            result = permutationsWithDup(case)
-            result = set(map(tuple, result))
+            result1 = permutationsWithDup(case)
+            result1 = set(map(tuple, result1))
+            result2 = permsDedupCounter(case)
+            result2 = set(map(tuple, result2))
+            result3 = permsDedupArray(case)
+            result3 = set(map(tuple, result3))
             expect = itertools.permutations(case)
             expect = set(expect)
-            self.assertEqual(result, expect)
+            self.assertEqual(result1, expect)
+            self.assertEqual(result2, expect)
+            self.assertEqual(result3, expect)
 
     def testCombinations(self):
         for i in range(15):

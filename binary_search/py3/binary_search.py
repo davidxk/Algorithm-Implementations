@@ -42,6 +42,7 @@ def general_binary_search(array, isRight):
         else:
             right = center
     # assert left == right
+    # assert not isRight(left)
     return left
 
 def lower(array, target):
