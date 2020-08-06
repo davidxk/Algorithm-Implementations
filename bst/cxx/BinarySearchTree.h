@@ -12,8 +12,8 @@ class BinarySearchTree
 public:
 	BinarySearchTree(): root(nullptr) { }
 	~BinarySearchTree();
-	int begin();
-	int end();
+	int front();
+	int back();
 	bool empty() { return root == nullptr; }
 	bool insert(int value);
 	bool erase(int value);

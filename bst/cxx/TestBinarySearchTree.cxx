@@ -88,13 +88,13 @@ void test_upper_lower_bound(int SIZE, int RANGE)
 	}
 }
 
-void test_begin_end(int SIZE, int RANGE)
+void test_front_back(int SIZE, int RANGE)
 {
 	TestableBST bst;
 	std::set<int> numSet;
 	setUp(SIZE, RANGE, bst, numSet);
-	assert(bst.begin() == *std::min_element(numSet.begin(), numSet.end()));
-	assert(bst.end() == *std::max_element(numSet.begin(), numSet.end()));
+	assert(bst.front() == *std::min_element(numSet.begin(), numSet.end()));
+	assert(bst.back() == *std::max_element(numSet.begin(), numSet.end()));
 }
 
 int main()
@@ -103,7 +103,7 @@ int main()
 	const int RANGE = SIZE * 2;
 	test_insert_find(SIZE, RANGE);
 	test_erase(SIZE, RANGE);
-	test_begin_end(SIZE, RANGE);
+	test_front_back(SIZE, RANGE);
 	test_upper_lower_bound(SIZE, RANGE);
 	return 0;
 }

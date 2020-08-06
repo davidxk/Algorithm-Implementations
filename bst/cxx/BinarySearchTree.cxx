@@ -3,18 +3,18 @@
 #include <climits>
 #include <stack>
 
-int BinarySearchTree::begin()
+int BinarySearchTree::front()
 {
-	assert(root != NULL && "taking value from empty BST");
+	assert(root != nullptr && "taking value from empty BST");
 	TreeNode* curr = root;
 	while(curr->left)
 		curr = curr->left;
 	return curr->val;
 }
 
-int BinarySearchTree::end()
+int BinarySearchTree::back()
 {
-	assert(root != NULL && "taking value from empty BST");
+	assert(root != nullptr && "taking value from empty BST");
 	TreeNode* curr = root;
 	while(curr->right)
 		curr = curr->right;
@@ -23,21 +23,21 @@ int BinarySearchTree::end()
 
 bool BinarySearchTree::insert(int value)
 {
-	if(root == NULL)
+	if(root == nullptr)
 	{
 		root = new TreeNode(value);
 		return true;
 	}
-	TreeNode *prev = NULL, *curr = root;
+	TreeNode *prev = nullptr, *curr = root;
 	while(curr)
 	{
 		prev = curr;
-		if(value == curr->val)
-			return false;
-		else if(value < curr->val)
+		if(value < curr->val)
 			curr = curr->left;
-		else
+		else if(value > curr->val)
 			curr = curr->right;
+		else
+			return false;
 	}
 	if(value < prev->val)
 		prev->left = new TreeNode(value);
@@ -48,7 +48,7 @@ bool BinarySearchTree::insert(int value)
 
 bool BinarySearchTree::erase(int value)
 {
-	TreeNode *prev = NULL, *curr = root;
+	TreeNode *prev = nullptr, *curr = root;
 	while(curr and value != curr->val)
 	{
 		prev = curr;
@@ -57,7 +57,7 @@ bool BinarySearchTree::erase(int value)
 		else
 			curr = curr->right;
 	}
-	if(curr == NULL) return false;
+	if(curr == nullptr) return false;
 	if(curr->left and curr->right)
 	{
 		TreeNode* succ = curr->right;
@@ -69,12 +69,12 @@ bool BinarySearchTree::erase(int value)
 	else
 		curr = curr->left ? curr->left : curr->right;
 
-	if(prev == NULL)
-		root = curr;
-	else if(value < prev->val)
+	if(value < prev->val)
 		prev->left = curr;
-	else
+	else if(value > prev->val)
 		prev->right = curr;
+	else
+		root = curr;
 	return true;
 }
 
@@ -83,44 +83,44 @@ bool BinarySearchTree::find(int value)
 	TreeNode* curr = root;
 	while(curr)
 	{
-		if(value == curr->val)
-			return true;
-		else if(value < curr->val)
+		if(value < curr->val)
 			curr = curr->left;
-		else
+		else if(value > curr->val)
 			curr = curr->right;
+		else
+			return true;
 	}
 	return false;
 }
 
 int BinarySearchTree::lower_bound(int value)
 {
-	assert(root != NULL && "taking value from empty BST");
+	assert(root != nullptr && "taking value from empty BST");
 	TreeNode* curr = root;
 	int lower = INT_MIN;
 	while(curr)
 	{
-		if(value == curr->val)
-			return value;
+		if(value > curr->val)
+			curr = curr->right;
 		else if(value < curr->val)
 		{
 			lower = curr->val;
 			curr = curr->left;
 		}
 		else
-			curr = curr->right;
+			return value;
 	}
 	return lower;
 }
 
 int BinarySearchTree::upper_bound(int value)
 {
-	assert(root != NULL && "taking value from empty BST");
+	assert(root != nullptr && "taking value from empty BST");
 	TreeNode* curr = root;
 	int upper = INT_MAX;
 	while(curr)
 	{
-		if(value == curr->val)
+		if(value > curr->val)
 			curr = curr->right;
 		else if(value < curr->val)
 		{
@@ -128,6 +128,7 @@ int BinarySearchTree::upper_bound(int value)
 			curr = curr->left;
 		}
 		else
+			// Note upper_bound and lower_bound are not defined symmetrically
 			curr = curr->right;
 	}
 	return upper;
