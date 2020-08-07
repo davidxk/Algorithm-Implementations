@@ -63,12 +63,13 @@ class StackTraversal:
     def dfsInorderTraversal(root):
         stack = [[0, root]]
         result = []
-        funcs = [lambda node: stack.append([0, node.left]),
+        funcs = [lambda node: stack.pop() if node is None else None,
+                lambda node: stack.append([0, node.left]),
                 lambda node: result.append(node.val), 
                 lambda node: stack.append([0, node.right])]
         while stack:
             eip, node = top = stack[-1]
-            if eip == len(funcs) or node is None:
+            if eip == len(funcs):
                 stack.pop()
                 continue
             funcs[eip](node)
