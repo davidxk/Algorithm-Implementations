@@ -7,6 +7,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <queue>
+#include <random>
 #include <vector>
 
 int pick_and_take(std::vector<int>& pool)
@@ -23,7 +24,8 @@ TreeNode* generate_random_tree(int size)
 	std::vector<int> pool;
 	for(int i = 0; i < size; i++)
 		pool.push_back(i);
-	random_shuffle(pool.begin(), pool.end());
+	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+	std::shuffle(pool.begin(), pool.end(), std::default_random_engine(seed));
 
 	TreeNode* root = new TreeNode(pick_and_take(pool));
 	std::queue<TreeNode*> fringe;
