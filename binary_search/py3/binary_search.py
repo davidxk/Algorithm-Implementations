@@ -22,27 +22,59 @@ def binary_search(array, target):
             right = center - 1
     return -1
 
-# isRight returns true when
-# a) array[center] is not the target and
-# b) target is in (center, right]
-# isRight returns false when
-# a) array[center] may be the target and
-# b) target is in [left, center]
+# target_is_gt returns true when target is in interval (center, right]
+# a) target does not equal center AND
+# b) target is greater than center
+# target_is_gt returns false when target is in interval [left, center]
+# a) target may equal center OR
+# b) target may be less than center
 #
 # Loop ends when
-# a) right = center == left or
+# a) right = center == left OR
 # b) left = center + 1 == right
-# So it does not matter which one you return
-def general_binary_search(array, isRight):
-    left, right = 0, len(array) - 1
+# So it does not matter if you return left or you return right
+# 
+# Loop will end because
+# a) when left = n and right = n + 1
+#         center = left + (right - left) // 2 == n == left
+# b) EITHER left = center + 1 == n + 1 == right OR right = center == n == left
+def general_binary_search(lower, upper, target_is_gt):
+    left, right = lower, upper
     while left < right:
         center = left + (right - left) // 2
-        if isRight(array[center]):
+        if target_is_gt(center):
             left = center + 1
         else:
             right = center
     # assert left == right
-    # assert not isRight(left)
+    # assert not target_is_gt(left)
+    return left
+
+# target_is_ge returns true when target is in interval [center, right]
+# a) target may equal center OR
+# b) target may be greather than center
+# target_is_ge returns false when target is in interval [left, center)
+# a) target does not equal center AND
+# b) target is less than center
+#
+# Loop ends when
+# a) right = center == left or
+# b) right = center - 1 == left
+# So it does not matter which one of left and right you return
+# 
+# Loop will end because
+# a) when left = n and right = n + 1
+#         center = left + (right - left + 1) // 2 == n + 1 == right
+# b) EITHER left = center == n + 1 == right OR right = center - 1 == n == left
+def general_binary_search2(lower, upper, target_is_ge):
+    left, right = lower, upper
+    while left < right:
+        center = left + (right - left + 1) // 2
+        if target_is_ge(center):
+            left = center
+        else:
+            right = center - 1
+    # assert left == right
     return left
 
 def lower(array, target):

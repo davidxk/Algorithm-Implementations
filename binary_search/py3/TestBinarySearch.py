@@ -1,4 +1,4 @@
-from binary_search import binary_search, general_binary_search, lower, higher, equal_range
+from binary_search import *
 import bisect
 import unittest
 import random
@@ -40,11 +40,14 @@ class TestBinarySearch(unittest.TestCase):
         for i in range(self.times):
             target = random.randrange(int(self.size * 1.10))
             ret1 = binary_search(self.array, target)
-            isRight = lambda x: x < target
-            ret2 = general_binary_search(self.array, isRight)
+            target_is_gt = lambda i: self.array[i] < target
+            ret2 = general_binary_search(0, len(self.array) - 1, target_is_gt)
+            target_is_ge = lambda i: self.array[i] <= target
+            ret3 = general_binary_search2(0, len(self.array) - 1, target_is_ge)
             if 0 <= ret1 < len(self.array):
                 self.assertEqual(self.array[ret1], target)
                 self.assertEqual(self.array[ret2], target)
+                self.assertEqual(self.array[ret3], target)
             else:
                 self.assertEqual(ret1, -1)
                 self.assertTrue(ret2 == 0 or ret2 == len(self.array) - 1)
