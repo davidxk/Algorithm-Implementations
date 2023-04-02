@@ -35,5 +35,11 @@ class TestMymath(unittest.TestCase):
                 expected += 1
             self.assertEqual(mymath.frac_ceiling(big, small), expected)
 
+    def testPrime(self):
+        maximum = 100 * 1000
+        primes = set(mymath.sieve_of_eratosthenes(maximum))
+        for num in range(maximum):
+            self.assertEqual(mymath.is_prime(num), num in primes, num)
+
 if __name__ == "__main__":
     unittest.main()

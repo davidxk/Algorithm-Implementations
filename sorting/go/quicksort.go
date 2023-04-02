@@ -46,6 +46,7 @@ func partition(nums []int, left, right int) int {
 		for pivot < nums[j] {
 			j--
 		}
+		// INVARIANT: nums[i] > pivot
 		if i >= j {
 			nums[i], nums[right] = nums[right], nums[i]
 			return i

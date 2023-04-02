@@ -1,4 +1,4 @@
-from math import log
+from math import ceil, log
 
 # Segment Tree is a complete binary tree
 # Tree size is 2 * power-of-2-ceiling of the array size
@@ -9,7 +9,7 @@ class RMQSegmentTree:
         #if len(array) < 2:
             #raise IndexError("Cannot build segment tree for len(array) < 2")
         self.n = len(array)
-        x = int(log(self.n - 1, 2)) + 1
+        x = ceil(log(self.n, 2))
         size = 2 ** x * 2
         self.tree = [0] * size
         self.build(0, array, 0, self.n - 1)
@@ -71,7 +71,7 @@ class RMQSegmentTree:
 class RSQSegmentTree:
     def __init__(self, array):
         self.n = len(array)
-        x = int(log(self.n - 1, 2)) + 1
+        x = ceil(log(self.n, 2))
         size = 2 ** x * 2
         self.tree = [0] * size
         self.lazy = [0] * size

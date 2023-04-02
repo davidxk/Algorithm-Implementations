@@ -19,19 +19,22 @@ class BinaryTree:
 
 class BinarySearchTree(BinaryTree):
     def add(self, target):
+        """ Handle empty tree """
         if self.root is None:
             self.root = TreeNode(target)
             return
+        """ Go down the branch, find the right place while keep the parent """
         prev = None
         curr = self.root
         while curr:
             prev = curr
-            if curr.val == target:
-                return
-            elif target < curr.val:
+            if target < curr.val:
                 curr = curr.left
-            else:
+            elif target > curr.val:
                 curr = curr.right
+            else:
+                return
+        """ Add value as leaf node """
         if target < prev.val:
             prev.left = TreeNode(target)
         else:
@@ -67,12 +70,12 @@ class BinarySearchTree(BinaryTree):
     def __contains__(self, target):
         root = self.root
         while root:
-            if root.val == target:
-                return True
-            elif target < root.val:
+            if target < root.val:
                 root = root.left
-            else:
+            elif target > root.val:
                 root = root.right
+            else:
+                return True
         return False
 
     def first(self):

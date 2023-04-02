@@ -24,7 +24,7 @@ In other words, given that ```Pattern[0: q]``` is a suffix of ```Text[shift: shi
 
 In any case, given new shift ```_shift``` we don’t need to compare the first ```k``` characters of ```Pattern``` with the corresponding characters of ```Text```. 
 
-```_shift = shift + (q - k)```
+`_shift = shift + (q - k)`
 
 Since it is given that ```Pattern[0: q]``` matches ```Text[shift: shift + q]```, the question can be restructured as: what is the greatest ```k < q``` where ```Pattern[0: k]``` is a suffix of ```Pattern[0: q]```. 
 

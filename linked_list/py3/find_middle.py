@@ -1,13 +1,24 @@
 # For even length
 # O O $
-#sf    
+#sf
 # ^ s f
 #
 # For odd length
 # O O O $
-#sf    
+#sf
 # ^ s f
 # ^   s   f
+# Time:  O(n)
+# Space: O(1)
+
+# For even length
+# O O $
+# s f
+#
+# For odd length
+# O O O $
+# s f
+#   s   f
 # Time:  O(n)
 # Space: O(1)
 

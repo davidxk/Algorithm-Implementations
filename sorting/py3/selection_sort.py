@@ -8,4 +8,3 @@ def selection_sort(array):
             if array[j] < array[minIdx]:
                 minIdx = j
         array[i], array[minIdx] = array[minIdx], array[i]
-    return array
