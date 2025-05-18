@@ -1,6 +1,17 @@
 # All 2^n subsets of an array sum(C(i, n))
 # Sub-problem: subsets of nums[start:]
 # Solution to the subproblem is a part of the solution to the original problem
+#
+# root     r o o o o o t
+# | \ \    |        | \ \
+# 3  2 1   4        3  2 1
+# |\  \    | \ \    |\  \
+# 2 1  1   3  2 1   2 1  1
+# |        |\  \    |
+# 1        2 1  1   1
+#          |
+#          1
+#
 """
 This recurssion is essentially multiple for loops. e.g. 2^3 is equivalent to
 result.append([])
@@ -11,6 +22,7 @@ for i in range(len(nums)):
         for j in range(j + 1, len(nums)):
             result.append([nums[i], nums[j], nums[k]])
 """
+# This setup can be used to solve knapsack problem with memoization
 def subsets(nums):
     def helper(start, buf, result):
         result.append(list(buf))
